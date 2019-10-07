@@ -38,7 +38,7 @@ function toggleIcon(e) {
         .toggleClass('fa-plus fa-minus');
 }
 
-function mytheme(index) {
+/* function mytheme(index) {
     switch (index) {
         case 0:
             changeColor('cyan');
@@ -63,9 +63,9 @@ function mytheme(index) {
     }
     var selectedClass = document.getElementById('wrapper').className;
     localStorage.setItem("selectedColor", selectedClass);
-}
+} */
 
-function changeColor(color) {
+/* function changeColor(color) {
     $('#wrapper').removeClass();
     $('#wrapper').addClass(color);
-}
+} */
