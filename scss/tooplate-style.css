@@ -9,6 +9,57 @@
     margin-bottom: 60px;
 }
 
+.country-item {
+    cursor: pointer;
+    background-color: #fff;
+    text-align: center;
+    transition: all 0.7s;
+    box-shadow: 0px 0px 15px #cdcdcd;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.uruguay-img {
+    background-image: url(../img/uruguay.png);
+    background-size: 100%;
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.brasil-img {
+    background-image: url(../img/brasil.png);
+    background-size: 100%;
+}
+
+.paraguay-img {
+    background-image: url(../img/paraguay.jpg);
+    background-size: 100%;
+}
+
+.bolivia-img {
+    background-image: url(../img/bolivia.png);
+    background-size: 100%;
+}
+
+.argentina-img {
+    background-image: url(../img/argentina.png);
+    background-size: 100%;
+}
+
+.eu-img {
+    background-image: url(../img/eu.png);
+    background-size: 100%;
+}
+
+.country {
+    color: black;
+    align-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .service-item {
     cursor: pointer;
     background-color: #fff;
@@ -16,6 +67,7 @@
     padding: 30px 20px;
     transition: all 0.7s;
     box-shadow: 0px 0px 15px #cdcdcd;
+    margin-top: 20px;
 }
 
 .service-item:hover {

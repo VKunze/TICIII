@@ -8392,7 +8392,7 @@ body #features-page .subsection4 .h6,
 body #login-reg .h6,
 body #about .about-list h3,
 body #about .about-list .h3 {
-    color: inherit;
+    /* color: inherit; */
     text-transform: uppercase;
 }
 
@@ -8596,7 +8596,7 @@ body #features-page .subsection3 .left-section .h4,
 body #features-page .subsection4 .h4,
 body #login-reg .h4 {
     font-size: 20px;
-    margin-top: 0px;
+    /* margin-top: 0px; */
 }
 
 body .section-heading h5,
