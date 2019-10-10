@@ -37,3 +37,25 @@ function toggleIcon(e) {
         .find(".more-less")
         .toggleClass('fa-plus fa-minus');
 }
+
+document.addEventListener("DOMContentLoaded",
+  function (event) {
+    
+    // Unobtrusive event binding
+    document.querySelector("button")
+      .addEventListener("click", function () {
+        
+        // Call server to get the name
+        $ajaxUtils
+          .sendGetRequest("data/name.txt", 
+            function (request) {
+              var name = request.responseText;
+
+              document.querySelector("#content")
+                .innerHTML = "<h2>Hello " + name + "!</h2>";
+            });
+
+        
+      });
+  }
+);
