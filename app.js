@@ -19,9 +19,13 @@ const server = http.createServer(function (request, response) {
   fs.exists(filename, function(exists) {
     handleNonExist(response, exists);
  
-    if (fs.statSync(filename).isDirectory()) 
+    console.log(fs);
+
+    if (fs.statSync(filename).isDirectory()) {
+      
       filename += '/index.html';
 
+    }
 
     if (uri == 'registration' && request.method === 'GET') {
         console.log('Request Type:' + request.method + ' Endpoint: ' + uri);
