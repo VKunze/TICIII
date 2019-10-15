@@ -1,31 +1,17 @@
-document.addEventListener("DOMContentLoaded",
-  function (event) {
-    //console.log(event);
-    // Unobtrusive event binding
-    //console.log(document.getElementById("nombre"));
-    if (document.querySelector("nombre")){
-        document.getElementById("nombre").addEventListener('change', function(){
-            console.log(globalThis);
-        });
-        
-        
-        
-        /* document.querySelector("nombre").addEventListener("input", function () {
-            console.log(globalThis);
-        }); */
-    }
-    
-        // Call server to get the name
-        /* 
-          .sendGetRequest("data/name.txt", 
-            function (request) {
-              var name = request.responseText;
+const url = require('url');
 
-              document.querySelector("#content")
-                .innerHTML = "<h2>Hello " + name + "!</h2>";
-            });
- */
-        
-      
-  }
-);
+module.exports = function (req, res) {
+  const reqUrl = url.parse(req.url, true);
+  //var name = 'World';
+  console.log(reqUrl.query);
+  /* if (reqUrl.query.name) {
+      name = reqUrl.query.name
+  } */
+
+  /* var response = {
+      "text": "Hello " + name
+  }; */
+
+  res.statusCode = 200;
+  //res.end(JSON.stringify(response));
+}

@@ -2,6 +2,7 @@ var http = require('http');
 var url = require("url");
 var path = require("path");
 var fs = require('fs');
+var port = 8080;
 
 mimeTypes = {
       "html": "text/html",
@@ -15,22 +16,31 @@ mimeTypes = {
 const server = http.createServer(function (request, response) {
   var uri = url.parse(request.url).pathname;
   var filename = path.join(process.cwd(), uri);
+  var registration = require('./script/registration.js');
+
+  console.log("hola");
+
+  if (uri == '/registration.html' && request.method === 'GET') {
+    console.log('Request Type:' + request.method + ' Endpoint: ' + uri);
+    registration(request, response);
+  } 
+
+  if (uri == '/uruguay' && request.method === 'GET') {
+    console.log('Request Type:' + request.method + ' Endpoint: ' + uri);
+    busquedas.uruguay(request, response);
+  } 
+
+  
   
   fs.exists(filename, function(exists) {
     handleNonExist(response, exists);
- 
+    
     if (fs.statSync(filename).isDirectory()) 
       filename += '/index.html';
 
-
-    if (uri == 'registration' && request.method === 'GET') {
-        console.log('Request Type:' + request.method + ' Endpoint: ' + uri);
-        service.sampleRequest(request, response);
-    } 
-
     readfile(response, filename);    
   });
-}).listen(8080);
+}).listen(port);
 
 function readfile(response, filename){
   fs.readFile(filename, "binary", function(err, file) {
