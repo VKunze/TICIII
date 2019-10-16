@@ -16,11 +16,11 @@ mimeTypes = {
 const server = http.createServer(function (request, response) {
   var uri = url.parse(request.url).pathname;
   var filename = path.join(process.cwd(), uri);
-  var registration = require('./script/registration.js');
+  //var registration = require('./script/registration.js');
 
-  console.log("hola");
+  //console.log("hola");
 
-  if (uri == '/registration.html' && request.method === 'GET') {
+  /* if (uri == '/registration.html' && request.method === 'GET') {
     console.log('Request Type:' + request.method + ' Endpoint: ' + uri);
     registration(request, response);
   } 
@@ -28,17 +28,34 @@ const server = http.createServer(function (request, response) {
   if (uri == '/uruguay' && request.method === 'GET') {
     console.log('Request Type:' + request.method + ' Endpoint: ' + uri);
     busquedas.uruguay(request, response);
-  } 
-
-  
-  
+  } */
+  console.log(request.url);
+  console.log("fiiiiiiiiiiiiiiiiiiiiiiiiiiiiinnnnnnnnnnnnnnnnnn");
   fs.exists(filename, function(exists) {
-    handleNonExist(response, exists);
+    if(!exists) {
+      response.writeHead(404, { "Content-Type": "text/plain" });
+      response.write("404 Not Found\n");
+      response.end();
+      return;
+    }
+    //handleNonExist(response, exists);
     
     if (fs.statSync(filename).isDirectory()) 
       filename += '/index.html';
-
-    readfile(response, filename);    
+    
+    fs.readFile(filename, "binary", function(err, file) {
+      handleError(response, err);    
+      var mimeType = mimeTypes[filename.split('.').pop()];
+      
+      if (!mimeType) {
+        mimeType = 'text/plain';
+      }
+      
+      response.writeHead(200, { "Content-Type": mimeType });
+      response.write(file, "binary");
+      response.end();
+    });
+    //readfile(response, filename);    
   });
 }).listen(port);
 
