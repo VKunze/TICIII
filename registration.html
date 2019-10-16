@@ -7,12 +7,13 @@
     <title>Registro</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="scss/main.css">
-    <link rel="stylesheet" href="scss/skin.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/skin.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script src="./script/index.js"></script>
+    <script src="./script/registration.js"></script>
 </head>
 
 <body id="wrapper">
@@ -132,7 +133,7 @@
                             <form role="form" action="" class="login-form">
                                 <div class="input-group form-group">
                                     <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
-                                    <input type="text" class="form-control" placeholder="Nombre" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" placeholder="Nombre" id="nombre" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group form-group">
                                     <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
@@ -151,7 +152,7 @@
                                     <textarea rows="4" cols="70" class="form-control" placeholder="Mensaje"></textarea>
 
                                 </div>
-                                <button type="submit" class="btn">Registrarme</button>
+                                <button type="submit" class="btn" id="btnreg">Registrarme</button>
                             </form>
                         </div>
                     </div>

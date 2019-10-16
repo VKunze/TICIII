@@ -6,10 +6,10 @@ $(document).ready(function() {
     });
 
     if (!document.getElementById('wrapper').className && !localStorage.getItem("selectedColor")) {
-        console.log('in if');
+        //console.log('in if');
         document.getElementById('wrapper').classList.add('blue');
     } else {
-        console.log('else');
+        //console.log('else');
         var colorClass = localStorage.getItem("selectedColor");
         document.getElementById('wrapper').classList.add(colorClass);
     }
