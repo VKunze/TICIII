@@ -3,12 +3,12 @@ var dos = 2;
 const url = require('url');
 
 filtro = {
-    uruguay = false
+    uruguay : false
 }
 
-$('.uru').click(funtcion(){
-    $.get()
-});
+/* $('.uru').click(function(){
+    $.get();
+}); */
 
 function uruguay(req, res){
     const reqUrl = url.parse(req.url, true);

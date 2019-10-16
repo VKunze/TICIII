@@ -391,7 +391,7 @@ body.cyan #skills .progress.progress-bar-4 .progress-left .progress-bar {
 body.cyan #team-member .qodef-circle-animate {
 	background-color: #1abac8;
 }
-body.cyan #portfolio .portfolio-hover {
+body.cyan #busquedas .busquedas-hover {
 	background-color: #1abac8;
 }
 body.cyan #contact-page .submit-button {
@@ -837,7 +837,7 @@ body.blue #skills .progress.progress-bar-4 .progress-left .progress-bar {
 body.blue #team-member .qodef-circle-animate {
 	background-color: #159eee;
 }
-body.blue #portfolio .portfolio-hover {
+body.blue #busquedas .busquedas-hover {
 	background-color: #159eee;
 }
 body.blue #contact-page .submit-button {
@@ -1282,7 +1282,7 @@ body.orange #skills .progress.progress-bar-4 .progress-left .progress-bar {
 body.orange #team-member .qodef-circle-animate {
 	background-color: #ff8a00;
 }
-body.orange #portfolio .portfolio-hover {
+body.orange #busquedas .busquedas-hover {
 	background-color: #ff8a00;
 }
 body.orange #contact-page .submit-button {
@@ -1727,7 +1727,7 @@ body.red #skills .progress.progress-bar-4 .progress-left .progress-bar {
 body.red #team-member .qodef-circle-animate {
 	background-color: #e54e53;
 }
-body.red #portfolio .portfolio-hover {
+body.red #busquedas .busquedas-hover {
 	background-color: #e54e53;
 }
 body.red #contact-page .submit-button {
@@ -2172,7 +2172,7 @@ body.green #skills .progress.progress-bar-4 .progress-left .progress-bar {
 body.green #team-member .qodef-circle-animate {
 	background-color: #1abc9c;
 }
-body.green #portfolio .portfolio-hover {
+body.green #busquedas .busquedas-hover {
 	background-color: #1abc9c;
 }
 body.green #contact-page .submit-button {
@@ -2612,10 +2612,10 @@ body.lightgreen #skills .progress.progress-bar-4 .progress-left .progress-bar {
 body.lightgreen #team-member .qodef-circle-animate {
 	background-color: #b4de50;
 }
-body.lightgreen #portfolio .portfolio-hover {
+body.lightgreen #busquedas .busquedas-hover {
 	background-color: #b4de50;
 }
-body.lightgreen #portfolio .submit-button {
+body.lightgreen #busquedas .submit-button {
 	background: #b4de50;
 }
 body.lightgreen #contact-page .submit-button {

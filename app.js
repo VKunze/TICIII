@@ -16,46 +16,27 @@ mimeTypes = {
 const server = http.createServer(function (request, response) {
   var uri = url.parse(request.url).pathname;
   var filename = path.join(process.cwd(), uri);
-  //var registration = require('./script/registration.js');
-
-  //console.log("hola");
+  var registration = require('./script/registration.js');
+  var busquedas = require('./script/busquedas.js');
+  
 
   /* if (uri == '/registration.html' && request.method === 'GET') {
     console.log('Request Type:' + request.method + ' Endpoint: ' + uri);
     registration(request, response);
-  } 
+  } */
 
-  if (uri == '/uruguay' && request.method === 'GET') {
+  /* if (uri == '/uruguay' && request.method === 'GET') {
     console.log('Request Type:' + request.method + ' Endpoint: ' + uri);
     busquedas.uruguay(request, response);
   } */
-  console.log(request.url);
-  console.log("fiiiiiiiiiiiiiiiiiiiiiiiiiiiiinnnnnnnnnnnnnnnnnn");
+  
   fs.exists(filename, function(exists) {
-    if(!exists) {
-      response.writeHead(404, { "Content-Type": "text/plain" });
-      response.write("404 Not Found\n");
-      response.end();
-      return;
-    }
-    //handleNonExist(response, exists);
+    handleNonExist(response, exists);
     
     if (fs.statSync(filename).isDirectory()) 
       filename += '/index.html';
     
-    fs.readFile(filename, "binary", function(err, file) {
-      handleError(response, err);    
-      var mimeType = mimeTypes[filename.split('.').pop()];
-      
-      if (!mimeType) {
-        mimeType = 'text/plain';
-      }
-      
-      response.writeHead(200, { "Content-Type": mimeType });
-      response.write(file, "binary");
-      response.end();
-    });
-    //readfile(response, filename);    
+    readfile(response, filename);    
   });
 }).listen(port);
 
