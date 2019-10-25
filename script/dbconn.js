@@ -10,10 +10,19 @@ var con = mysql.createConnection({
 con.connect(function(err){
     if (err) throw err;
     console.log("Connected!");
-    var sql = "SELECT * FROM Barrio;";
-    con.query(sql, function(err, result){
-        if (err) throw err;
-        console.log("Result: " + result);
-    });
 });
-global.database=con;
+
+global.database = con;
+
+function query1(sql){
+    if(!sql) sql = "SELECT * FROM Barrio;";
+    return database.query(sql, function(err, result){
+        if (err) throw err;
+        //console.log("Result: " + result);
+    });
+}
+
+
+module.exports.query1 = query1;
+module.exports.database = con;
+

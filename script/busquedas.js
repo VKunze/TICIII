@@ -1,23 +1,11 @@
-var hola= "chau";
-var dos = 2;
-const url = require('url');
+import database from './dbconn';
 
-filtro = {
-    uruguay : false
+//import query1 from './dbconn.js';
+//console.log(database);
+
+function uruguay(){
+    console.log('aaaaaa');
+    console.log(database);
+    //console.log(query1());
 }
 
-/* $('.uru').click(function(){
-    $.get();
-}); */
-
-function uruguay(req, res){
-    const reqUrl = url.parse(req.url, true);
-    filtro.uruguay = true;
-    console.log(filtro);
-    res.statusCode = 200;
-    res.end();
-}
-
-module.exports = {
-    uruguay
-};

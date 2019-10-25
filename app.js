@@ -3,6 +3,7 @@ var url = require("url");
 var path = require("path");
 var fs = require('fs');
 var port = 8080;
+var db = require('./script/dbconn');
 
 mimeTypes = {
       "html": "text/html",
@@ -13,22 +14,23 @@ mimeTypes = {
       "css": "text/css"
     };
 
+//console.log(database);
+
 const server = http.createServer(function (request, response) {
   var uri = url.parse(request.url).pathname;
   var filename = path.join(process.cwd(), uri);
   var registration = require('./script/registration.js');
   var busquedas = require('./script/busquedas.js');
   
+  if (request.method === 'POST' || request.url === '/hola'){
+    console.log('mensaje');
+    response.write('A message!');
+  }
 
-  /* if (uri == '/registration.html' && request.method === 'GET') {
-    console.log('Request Type:' + request.method + ' Endpoint: ' + uri);
-    registration(request, response);
-  } */
-
-  /* if (uri == '/uruguay' && request.method === 'GET') {
-    console.log('Request Type:' + request.method + ' Endpoint: ' + uri);
-    busquedas.uruguay(request, response);
-  } */
+  if (uri === '/favicon.ico') {
+    ignoreFavicon(uri, response);
+    return;
+  }
   
   fs.exists(filename, function(exists) {
     handleNonExist(response, exists);
@@ -71,4 +73,9 @@ function handleError(response, err){
     response.end();
     return;
   }
+}
+
+function ignoreFavicon(uri, response) {
+    response.writeHead(200, {'Content-Type': 'image/x-icon'} );
+    response.end();
 }

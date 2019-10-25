@@ -9,13 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/skin.css">
-    <link rel="stylesheet" href="css/tooplate-style.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="./script/index.js"></script>
-    <script src="./script/busquedas.js"></script>
-
+    <link rel="stylesheet" href="css/tooplate-style.css">    
 </head>
 
 <body id="wrapper">
@@ -112,8 +106,8 @@
                 <h3 style="margin-left:30px">Seleccione un país</h3>
             </div>
             <div class="col-md-2 col-xs-3 col-xs-12">
-                <div class="country-item first-service uruguay-img">
-                    <h4 class="country" id="uru">Uruguay</h4>
+                <div class="country-item first-service uruguay-img" onclick='uruguay()'>
+                    <h4 class="country">Uruguay</h4>
                 </div>
             </div>
             <div class="col-md-2 col-xs-3 col-xs-12 ">
@@ -234,5 +228,12 @@
     </section>
 
 </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="./script/index.js"></script>
+    <script src="./script/dbconn.js"></script>
+    <script src="./app.js"></script>
+    <script src="./script/busquedas.js"></script>
 
 </html>

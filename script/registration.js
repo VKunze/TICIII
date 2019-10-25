@@ -1,4 +1,4 @@
-const url = require('url');
+/* var url = require('url');
 
 module.exports = function (req, res) {
   const reqUrl = url.parse(req.url, true);
@@ -6,4 +6,4 @@ module.exports = function (req, res) {
 
   res.statusCode = 200;
   res.end(JSON.stringify(response));
-}
+} */
