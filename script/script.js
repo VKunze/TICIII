@@ -17,5 +17,9 @@ document.addEventListener("DOMContentLoaded", function(event){
 
 function actualizarDatos(){
     var hola = "chau";
-    document.querySelector("#brasil").innerHTML = "HOOOOOLLLLLLAAAAAAAA";
+    if(document.querySelector("#brasil").innerHTML === "HOOOOOLLLLLLAAAAAAAA"){
+        document.querySelector("#brasil").innerHTML = "BRASIL";
+    }else{
+        document.querySelector("#brasil").innerHTML = "HOOOOOLLLLLLAAAAAAAA";
+    }
 }; 
