@@ -7,22 +7,16 @@ var con = mysql.createConnection({
     database : "ticdb"
 });
 
-con.connect(function(err){
-    if (err) throw err;
-    console.log("Connected!");
-});
-
-global.database = con;
-
-function query1(sql){
-    if(!sql) sql = "SELECT * FROM Barrio;";
-    return database.query(sql, function(err, result){
+//var connectdb = function(){
+//    console.log("att");
+    con.connect(function(err){
         if (err) throw err;
-        //console.log("Result: " + result);
+        console.log("Connected!");
     });
-}
+//};
 
-
-module.exports.query1 = query1;
-module.exports.database = con;
+//global.database = con;
+module.exports = {
+    con : con
+};
 

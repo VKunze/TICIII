@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/skin.css">
-    <link rel="stylesheet" href="css/tooplate-style.css">    
+    <link rel="stylesheet" href="css/tooplate-style.css"> 
 </head>
 
 <body id="wrapper">
@@ -106,12 +106,12 @@
                 <h3 style="margin-left:30px">Seleccione un país</h3>
             </div>
             <div class="col-md-2 col-xs-3 col-xs-12">
-                <div class="country-item first-service uruguay-img" onclick='uruguay()'>
+                <div class="country-item first-service uruguay-img" id="uruguay">
                     <h4 class="country">Uruguay</h4>
                 </div>
             </div>
             <div class="col-md-2 col-xs-3 col-xs-12 ">
-                <div class="country-item first-service brasil-img ">
+                <div class="country-item first-service brasil-img " id="brasil">
                     <h4 class="country ">Brasil</h4>
                 </div>
             </div>
@@ -227,13 +227,15 @@
         </div>
     </section>
 
-</body>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="./script/index.js"></script>
-    <script src="./script/dbconn.js"></script>
-    <script src="./app.js"></script>
-    <script src="./script/busquedas.js"></script>
+    <!-- <script src="./script/index.js"></script> -->
+    <!-- <script src="./script/consultas.js"></script> -->
+    <!-- <script src="./app.js"></script> -->
+    <script src="./script/ajax-utils.js"></script>
+    <script src="./script/script.js"></script>
+    <!-- <script src="./script/require.js"></script> -->
+</body>
 
+    
 </html>
