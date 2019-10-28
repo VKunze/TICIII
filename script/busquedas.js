@@ -1,16 +1,10 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     document.querySelector("#uruguay").addEventListener("click", function() {
         fetch('uruguay', { method: 'POST' });
+        mostrar();
     })
 });
 
-function ocultar() {
-    document.getElementById('obj1').style.display = 'none';
-    document.getElementById('obj1').style.backgroundColor = black;
+function mostrar() {
+    document.getElementById('obj1').style.display = 'block';
 }
-
-document.addEventListener("DOMContentLoaded", function(event) {
-    document.querySelector("#brasil").addEventListener("click", function() {
-        ocultar();
-    })
-});

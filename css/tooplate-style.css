@@ -30,27 +30,27 @@
 
 .uruguay-img {
     background-image: url(../img/uruguay.png);
-    background-size: 200px 90px !important;
+    background-size: 200px 85px !important;
 }
 
 .brasil-img {
     background-image: url(../img/brasil.png);
-    background-size: 200px 90px !important;
+    background-size: 200px 85px !important;
 }
 
 .paraguay-img {
     background-image: url(../img/paraguay.jpg);
-    background-size: 200px 90px !important;
+    background-size: 200px 85px !important;
 }
 
 .bolivia-img {
     background-image: url(../img/bolivia.png);
-    background-size: 200px 90px !important;
+    background-size: 200px 85px !important;
 }
 
 .argentina-img {
     background-image: url(../img/argentina.png);
-    background-size: 200px 90px !important;
+    background-size: 200px 85px !important;
 }
 
 .eu-img {
@@ -77,7 +77,7 @@
 }
 
 .service-item:hover {
-    background-color: rgb(132, 220, 223);
+    background-color: rgb(108, 188, 199);
 }
 
 .service-item h4 {
