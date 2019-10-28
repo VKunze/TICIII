@@ -2,9 +2,10 @@ var http = require('http');
 var url = require("url");
 var path = require("path");
 var fs = require('fs');
-var port = 8080;
-var db = require('./script/dbconn');
+var db = require('./script/dbconn.js');
 
+var port = 8080;
+var database = db.con;
 mimeTypes = {
       "html": "text/html",
       "jpeg": "image/jpeg",
@@ -14,17 +15,13 @@ mimeTypes = {
       "css": "text/css"
     };
 
-//console.log(database);
-
 const server = http.createServer(function (request, response) {
   var uri = url.parse(request.url).pathname;
   var filename = path.join(process.cwd(), uri);
-  var registration = require('./script/registration.js');
-  var busquedas = require('./script/busquedas.js');
-  
-  if (request.method === 'POST' || request.url === '/hola'){
+  console.log(request.url);
+  if (request.method === 'POST' && request.url === '/uruguay'){
     console.log('mensaje');
-    response.write('A message!');
+    return;
   }
 
   if (uri === '/favicon.ico') {
