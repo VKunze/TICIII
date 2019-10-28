@@ -1,4 +1,5 @@
 var mysql = require('mysql');
+//var script = require('./globalF.js');
 
 var con = mysql.createConnection({
     host: "localhost",
@@ -12,6 +13,7 @@ var con = mysql.createConnection({
     con.connect(function(err){
         if (err) throw err;
         console.log("Connected!");
+        //script.db = con;
     });
 //};
 
