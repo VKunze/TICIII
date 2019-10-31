@@ -2,10 +2,10 @@ var http = require('http');
 var url = require("url");
 var path = require("path");
 var fs = require('fs');
-var db = require('./script/dbconn.js');
+//var db = require('./script/dbconn.js');
+var consulta = require('./consultas.js');
 
 var port = 8080;
-var database = db.con;
 mimeTypes = {
       "html": "text/html",
       "jpeg": "image/jpeg",
@@ -18,9 +18,10 @@ mimeTypes = {
 const server = http.createServer(function (request, response) {
   var uri = url.parse(request.url).pathname;
   var filename = path.join(process.cwd(), uri);
-  console.log(request.url);
+  
   if (request.method === 'POST' && request.url === '/uruguay'){
     console.log('mensaje');
+    consulta.filtrar();
     return;
   }
 
@@ -31,11 +32,11 @@ const server = http.createServer(function (request, response) {
   
   fs.exists(filename, function(exists) {
     handleNonExist(response, exists);
-    
+
     if (fs.statSync(filename).isDirectory()) 
       filename += '/index.html';
     
-    readfile(response, filename);    
+      readfile(response, filename);    
   });
 }).listen(port);
 
@@ -43,11 +44,10 @@ function readfile(response, filename){
   fs.readFile(filename, "binary", function(err, file) {
     handleError(response, err);    
     var mimeType = mimeTypes[filename.split('.').pop()];
-    
+
     if (!mimeType) {
       mimeType = 'text/plain';
     }
-    
     response.writeHead(200, { "Content-Type": mimeType });
     response.write(file, "binary");
     response.end();
