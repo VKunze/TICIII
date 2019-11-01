@@ -10,34 +10,34 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/skin.css">
 
-    
+
 </head>
 
 <body>
-<h1 id="title">Filtros</h1>
-<p id="description">Selecciona los filtros que deseas</p><br>
-  <form id="survey-form">
-   
-<div style="margin-bottom: 10px; display: flex;">
-<span class="box_left">Fecha</span>
-<input type="checkbox" id="cbfecha">
-<input type="date" name="Fecha" id="dateofbirth">
-<input type="date" name="Fecha" id="dateofbirth">
- 
- 
-    
-</div>
+    <!-- <h1 id="title">Filtros</h1> -->
+    <p id="description">Selecciona los filtros que deseas</p><br>
+    <form id="survey-form">
 
-<div style="margin-bottom: 10px; display: flex;">
-  <span class="box_left">Empresa</span>
-  <input type="checkbox" id="cbempresa">
-  <span class="box_right"><input id="empresa"></input></span>
-</div>
+        <div style="margin-bottom: 10px; display: flex;">
+            <span class="box_left">Fecha</span>
+            <input type="checkbox" id="cbfecha">
+            <input type="date" name="Fecha" id="dateofbirth">
+            <input type="date" name="Fecha" id="dateofbirth">
 
-<div style="margin-bottom: 10px; display: flex;">
-  <span class="box_left">Cantidad</span>
-  <input type="checkbox" id="cbcantidad">
-  <span class="select">
+
+
+        </div>
+
+        <div style="margin-bottom: 10px; display: flex;">
+            <span class="box_left">Empresa</span>
+            <input type="checkbox" id="cbempresa">
+            <span class="box_right"><input id="empresa"></input></span>
+        </div>
+
+        <div style="margin-bottom: 10px; display: flex;">
+            <span class="box_left">Cantidad</span>
+            <input type="checkbox" id="cbcantidad">
+            <span class="select">
       <select name="slct" id="slct">
         <option selected disabled>Seleccionar</option>
         <option value="1">></option>
@@ -45,14 +45,14 @@
         <option value="3">=</option>
       </select>
   </span>
-  <span class="box_right"><input id="cantidad"></input></span>
-  
-</div>
+            <span class="box_right"><input id="cantidad"></input></span>
 
-<div style="margin-bottom: 10px; display: flex;">
-    <span class="box_left">Cifra en dólares</span>
-    <input type="checkbox" id="idcifus">
-    <span class="select">
+        </div>
+
+        <div style="margin-bottom: 10px; display: flex;">
+            <span class="box_left">Cifra en dólares</span>
+            <input type="checkbox" id="idcifus">
+            <span class="select">
         <select name="slct" id="slct">
           <option selected disabled>Seleccionar</option>
           <option value="1">></option>
@@ -60,13 +60,13 @@
           <option value="3">=</option>
         </select>
     </span>
-    <span class="box_right"><input id="cifus"></input></span>
-</div>
+            <span class="box_right"><input id="cifus"></input></span>
+        </div>
 
-<div style="margin-bottom: 10px; display: flex;">
-    <span class="box_left">Departamento</span>
-    <input type="checkbox" id="cbdepartamento">
-    <span class="select">
+        <div style="margin-bottom: 10px; display: flex;">
+            <span class="box_left">Departamento</span>
+            <input type="checkbox" id="cbdepartamento">
+            <span class="select">
         <select name="slct" id="slct">
           <option selected disabled>Seleccionar</option>
           <option value="Artigas">Artigas</option>
@@ -94,14 +94,14 @@
 
 <div style="margin-bottom: 10px; display: flex;">
     <span class="box_left">País de origen</span>
-    <input type="checkbox" id="cbpaisDeOrigen">
-    <span class="box_right"><input id="paisDeOrigen"></input></span>
-</div>
+            <input type="checkbox" id="cbpaisDeOrigen">
+            <span class="box_right"><input id="paisDeOrigen"></input></span>
+        </div>
 
-<div style="margin-bottom: 10px;display: flex;">
-    <span class="box_left">Vía de transporte</span>
-    <input type="checkbox" id="cbviaDeTransporte">
-    <span class="select" style="width:161,6px ;">
+        <div style="margin-bottom: 10px;display: flex;">
+            <span class="box_left">Vía de transporte</span>
+            <input type="checkbox" id="cbviaDeTransporte">
+            <span class="select" style="width:161,6px ;">
       <select name="slct" id="slct">
         <option selected disabled>Seleccionar</option>
         <option value="1">VÍA AERÉA</option>
@@ -109,18 +109,19 @@
         <option value="3">VÍA TERRESTRE</option>
       </select>
     </span>
-</div>
+        </div>
 
-<div style="margin-bottom: 10px; display: flex;">
-    <span class="box_left">Número de DUA</span>
-    <input type="checkbox" id="cbnumeroDUA">
-    <span class="box_right"><input id="numeroDUA"></input></span>
-</div>
+        <div style="margin-bottom: 10px; display: flex;">
+            <span class="box_left">Número de DUA</span>
+            <input type="checkbox" id="cbnumeroDUA">
+            <span class="box_right"><input id="numeroDUA"></input></span>
+        </div>
 
 
-<button type="button">Filtrar</button>
-  </form>
+        <button type="button">Filtrar</button>
+    </form>
 
-  <script src="./script/calendarfiltro.js"></script>
+    <script src="./script/calendarfiltro.js"></script>
 </body>
+
 </html>
