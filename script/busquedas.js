@@ -1,11 +1,17 @@
-
 document.addEventListener("DOMContentLoaded", function(event) {
     document.querySelector("#uruguay").addEventListener("click", function() {
         fetch('uruguay', { method: 'POST' });
-        mostrar();
+        mostrarBasesUy();
+    })
+    document.querySelector("#ImpTyA").addEventListener("click", function() {
+        mostrarTablaImpTyA();
     })
 });
 
-function mostrar() {
+function mostrarBasesUy() {
     document.getElementById('obj1').style.display = 'block';
+}
+
+function mostrarTablaImpTyA() {
+    document.getElementById('TablaImpTyA').style.display = 'block';
 }
