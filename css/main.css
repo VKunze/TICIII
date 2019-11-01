@@ -1398,7 +1398,7 @@ button,
 select,
 textarea {
     font-family: inherit;
-    font-size: inherit;
+    font-size: 10px;
     line-height: inherit;
 }
 
@@ -11469,7 +11469,7 @@ i.desactivado:hover {
 }
 
 input#dateofbirth {
-    width: 161.6px;
+    width: 130;
 }
 
 
@@ -11501,7 +11501,7 @@ select::-ms-expand {
 .select {
     position: relative;
     display: flex;
-    width: 161.6px;
+    width: 130px;
     height: 31.6px;
     line-height: 3;
     background: #98a9b9;
@@ -11554,4 +11554,8 @@ input.checkbox {
 
 select #slct {
     width: 30px !important;
+}
+
+input#empresa, input#cantidad, input#cifus, input#paisDeOrigen, input#numeroDUA{
+    width: 130px !important;
 }
