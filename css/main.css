@@ -3134,8 +3134,8 @@ input[type="search"] {
 
 input[type="radio"],
 input[type="checkbox"] {
-    margin: 4px 0 0;
-    margin-top: 1px \9;
+    margin: 10px 10px 0;
+    margin-top: 8px \9;
     line-height: normal;
 }
 
@@ -11445,4 +11445,82 @@ i.desactivado:hover {
 
 
 
-/* TABLA DE FILTROS! */
+/* Calendario de filtros */
+[type="date"] {
+    background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+  }
+  [type="date"]::-webkit-inner-spin-button {
+    display: none;
+  }
+  [type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+  input#dateofbirth{
+      width: 161.6px;
+  }
+ 
+  
+  /* Vía de transporte filtros */
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #98a9b9; /* Fondo del seleccionar */
+    background-image: none;
+  }
+  /* Remove IE arrow */
+  select::-ms-expand {
+    display: none;
+  }
+  /* Custom Select */
+  .select {
+    position: relative;
+    display: flex;
+    width: 161.6px;
+    height: 31.6px;
+    line-height: 3;
+    background: #98a9b9;
+    overflow: hidden;
+    border-radius: .5em;
+  }
+  select {
+    flex: 1;
+    padding: 0 .5em;
+    color: #fff; /* Color de la letra */
+    cursor: pointer;
+    width: 10px !important;
+  }
+  /* Arrow */
+  .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background:  #84919e;/* Color del cuadradito de la flechita */
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+  }
+  /* Transition */
+  .select:hover::after {
+    color: #161615;
+  }
+
+  span.box_left{
+      width: 3cm !important;
+      height: 1cm !important;
+  }
+  input.checkbox{
+      margin-right: 20px;
+  }
+
+select #slct{
+    width: 30px !important;
+}
