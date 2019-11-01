@@ -11556,6 +11556,10 @@ select #slct {
     width: 30px !important;
 }
 
-input#empresa, input#cantidad, input#cifus, input#paisDeOrigen, input#numeroDUA{
+input#empresa,
+input#cantidad,
+input#cifus,
+input#paisDeOrigen,
+input#numeroDUA {
     width: 130px !important;
 }
