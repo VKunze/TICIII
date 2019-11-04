@@ -1398,7 +1398,7 @@ button,
 select,
 textarea {
     font-family: inherit;
-    font-size: inherit;
+    font-size: 10px;
     line-height: inherit;
 }
 
@@ -1662,8 +1662,8 @@ mark,
 }
 
 .text-lowercase {
-    text-transform: lowercase;
-}
+    
+}text-transform: lowercase;
 
 .text-uppercase,
 .initialism {
@@ -3134,8 +3134,8 @@ input[type="search"] {
 
 input[type="radio"],
 input[type="checkbox"] {
-    margin: 4px 0 0;
-    margin-top: 1px \9;
+    margin: 10px 10px 0;
+    margin-top: 8px \9;
     line-height: normal;
 }
 
@@ -8115,7 +8115,7 @@ button.close {
 /* @import "_skin"; */
 
 body {
-    background-color: #fff;
+    background-color: #f9f9f9;
     font-family: Segoe UI, Arial, Sans-Serif !important;
     font-size: 14px;
     color: #777777 !important;
@@ -10431,7 +10431,7 @@ body #faq .panel-title a {
     padding: 15px;
     text-decoration: none;
     color: #777777;
-    text-transform: capitalize;
+    text-transform: none;
     font-size: 16px;
     font-weight: bold;
 }
@@ -11392,57 +11392,174 @@ i.desactivado:hover {
     color: #ffffff !important;
 }
 
-#login-dp{
+#login-dp {
     min-width: 250px;
     padding: 14px 14px 0;
-    overflow:hidden;
-    background-color:rgba(255,255,255,.8);
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, .8);
 }
-#login-dp .help-block{
-    font-size:12px    
+
+#login-dp .help-block {
+    font-size: 12px
 }
-#login-dp .bottom{
-    background-color:rgba(255,255,255,.8);
-    border-top:1px solid #ddd;
-    clear:both;
-    padding:14px;
+
+#login-dp .bottom {
+    background-color: rgba(255, 255, 255, .8);
+    border-top: 1px solid #ddd;
+    clear: both;
+    padding: 14px;
 }
-#login-dp .social-buttons{
-    margin:12px 0    
+
+#login-dp .social-buttons {
+    margin: 12px 0
 }
-#login-dp .social-buttons a{
+
+#login-dp .social-buttons a {
     width: 49%;
 }
+
 #login-dp .form-group {
     margin-bottom: 10px;
 }
-.btn-fb{
+
+.btn-fb {
     color: #fff;
-    background-color:#3b5998;
+    background-color: #3b5998;
 }
-.btn-fb:hover{
+
+.btn-fb:hover {
     color: #fff;
-    background-color:#496ebc 
+    background-color: #496ebc
 }
-.btn-tw{
+
+.btn-tw {
     color: #fff;
-    background-color:#55acee;
+    background-color: #55acee;
 }
-.btn-tw:hover{
+
+.btn-tw:hover {
     color: #fff;
-    background-color:#59b5fa;
+    background-color: #59b5fa;
 }
-@media(max-width:768px){
-    #login-dp{
+
+@media(max-width:768px) {
+    #login-dp {
         background-color: inherit;
         color: #fff;
     }
-    #login-dp .bottom{
+    #login-dp .bottom {
         background-color: inherit;
-        border-top:0 none;
+        border-top: 0 none;
     }
 }
 
 
+/* Calendario de filtros */
 
-/* TABLA DE FILTROS! */
+[type="date"] {
+    background: #fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
+}
+
+[type="date"]::-webkit-inner-spin-button {
+    display: none;
+}
+
+[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+input#dateofbirth {
+    width: 130;
+}
+
+
+/* Vía de transporte filtros */
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #98a9b9;
+    /* Fondo del seleccionar */
+    background-image: none;
+}
+
+
+/* Remove IE arrow */
+
+select::-ms-expand {
+    display: none;
+}
+
+
+/* Custom Select */
+
+.select {
+    position: relative;
+    display: flex;
+    width: 130px;
+    height: 31.6px;
+    line-height: 3;
+    background: #98a9b9;
+    overflow: hidden;
+    border-radius: .5em;
+}
+
+select {
+    flex: 1;
+    padding: 0 .5em;
+    color: #fff;
+    /* Color de la letra */
+    cursor: pointer;
+    width: 10px !important;
+}
+
+
+/* Arrow */
+
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #84919e;
+    /* Color del cuadradito de la flechita */
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+}
+
+
+/* Transition */
+
+.select:hover::after {
+    color: #161615;
+}
+
+span.box_left {
+    width: 3cm !important;
+    height: 1cm !important;
+}
+
+input.checkbox {
+    margin-right: 20px;
+}
+
+select #slct {
+    width: 30px !important;
+}
+
+input#empresa,
+input#cantidad,
+input#cifus,
+input#paisDeOrigen,
+input#numeroDUA {
+    width: 130px !important;
+}
