@@ -1,7 +1,9 @@
 
 document.addEventListener("DOMContentLoaded", function(event) {
     document.querySelector("#uruguay").addEventListener("click", function() {
-        fetch('uruguay', { method: 'POST' });
+        $.post("uruguay");
+        
+        //fetch('uruguay', { method: 'POST' });
         mostrar();
     })
 });
@@ -9,3 +11,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
 function mostrar() {
     document.getElementById('obj1').style.display = 'block';
 }
+
+jquery()
