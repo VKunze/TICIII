@@ -7,11 +7,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
         };
         fetch('/uruguay', options).then(function(response){
-            var texto = response.text();
-            return texto;
+            return response.text();
         }).then(function(html){
-            $('#uruguay').html(html);
-            console.log(html);
+            $('#data').html(html);
         });
         mostrarBasesUy();
     })
