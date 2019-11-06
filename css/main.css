@@ -1661,10 +1661,9 @@ mark,
     white-space: nowrap;
 }
 
-.text-lowercase {
-    
-}text-transform: lowercase;
+.text-lowercase {}
 
+text-transform: lowercase;
 .text-uppercase,
 .initialism {
     text-transform: uppercase;
@@ -11476,16 +11475,25 @@ input#dateofbirth {
 /* Vía de transporte filtros */
 
 select {
-    -webkit-appearance: none;
+    /* -webkit-appearance: none;
     -moz-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    outline: 0;
-    box-shadow: none;
-    border: 0 !important;
-    background: #98a9b9;
+    -ms-appearance: none; */
+    /* appearance: none; */
+    /* outline: 0; */
+    /* box-shadow: none; */
+    /* border: 0 !important; */
+    /* background: white; */
     /* Fondo del seleccionar */
-    background-image: none;
+    /* background-image: none; */
+    background-color: #6bb9f2;
+    color: white;
+    padding: 12px;
+    border: none;
+    font-size: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
 }
 
 
@@ -11506,7 +11514,7 @@ select::-ms-expand {
     line-height: 3;
     background: #98a9b9;
     overflow: hidden;
-    border-radius: .5em;
+    border-radius: .5em
 }
 
 select {
@@ -11518,29 +11526,59 @@ select {
     width: 10px !important;
 }
 
+.select::before {
+    content: "\f13a";
+    font-family: FontAwesome !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    font-size: 13px;
+    line-height: 35px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+}
+
+.select:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.select #slct option {
+    padding: 30px;
+}
+
 
 /* Arrow */
 
-.select::after {
+
+/* .select::after {
     content: '\25BC';
     position: absolute;
     top: 0;
     right: 0;
     padding: 0 1em;
-    background: #84919e;
-    /* Color del cuadradito de la flechita */
-    cursor: pointer;
+    background: #84919e; */
+
+
+/* Color del cuadradito de la flechita */
+
+
+/* cursor: pointer;
     pointer-events: none;
     -webkit-transition: .25s all ease;
     -o-transition: .25s all ease;
     transition: .25s all ease;
-}
+} */
 
 
 /* Transition */
 
 .select:hover::after {
-    color: #161615;
+    color: #f2f2f7;
 }
 
 span.box_left {
@@ -11562,4 +11600,9 @@ input#cifus,
 input#paisDeOrigen,
 input#numeroDUA {
     width: 130px !important;
+}
+
+#botonFiltro:hover {
+    background: #e2e2e2;
+    box-shadow: inset 0 0 0 3px #7fc1ec;
 }
