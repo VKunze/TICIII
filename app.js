@@ -2,8 +2,10 @@ var http = require('http');
 var url = require("url");
 var path = require("path");
 var fs = require('fs');
-//var db = require('./script/dbconn.js');
+var Promise = require('promise');
 var consulta = require('./consultas.js');
+var db = require("./script/dbconn").db;
+
 
 var port = 8080;
 mimeTypes = {
@@ -18,26 +20,33 @@ mimeTypes = {
 const server = http.createServer(function (request, response) {
   var uri = url.parse(request.url).pathname;
   var filename = path.join(process.cwd(), uri);
-  
-  if (request.method === 'POST' && request.url === '/uruguay'){
+
+  if (request.method === 'GET' && request.url === '/uruguay'){
     console.log('mensaje');
-    consulta.filtrar();
-    return;
-  }
+    var tabla = "";
+    console.log("pre");
+    consulta.filtrar(db).then((res) => {
+      tabla = res;
 
-  if (uri === '/favicon.ico') {
-    ignoreFavicon(uri, response);
-    return;
-  }
-  
-  fs.exists(filename, function(exists) {
-    handleNonExist(response, exists);
-
-    if (fs.statSync(filename).isDirectory()) 
-      filename += '/index.html';
+      response.writeHead(200, { "Content-Type": "text/html" });
+      response.write(tabla);
+      response.end();
+    });    
+  } else {
+    if (uri === '/favicon.ico') {
+      ignoreFavicon(uri, response);
+      return;
+    }
     
+    fs.exists(filename, function(exists) {
+      handleNonExist(response, exists);
+
+      if (fs.statSync(filename).isDirectory()) 
+        filename += '/index.html';
+      
       readfile(response, filename);    
-  });
+    });
+  }
 }).listen(port);
 
 function readfile(response, filename){
@@ -52,7 +61,7 @@ function readfile(response, filename){
     response.write(file, "binary");
     response.end();
   });
-}
+} 
 
 function handleNonExist(response, exists){
   if(!exists) {
