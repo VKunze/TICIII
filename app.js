@@ -32,7 +32,7 @@ const server = http.createServer(function (request, response) {
       response.write(tabla);
       response.end();
     });    
-  } else {
+  } else if {
     if (uri === '/favicon.ico') {
       ignoreFavicon(uri, response);
       return;
@@ -46,6 +46,10 @@ const server = http.createServer(function (request, response) {
       
       readfile(response, filename);    
     });
+  } else {
+      if(request.method === 'POST' && request.url === '/ingresar'){
+        console.log("HOLA");
+    }
   }
 }).listen(port);
 
