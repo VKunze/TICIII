@@ -56,8 +56,9 @@ function getQuery(){
                 query += 'WHERE ';
                 firstFilter = false;
             }
-            query += 
-        }    }
+            query += "hola";
+        }
+    }    
     return query;
 };
 
