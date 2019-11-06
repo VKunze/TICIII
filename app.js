@@ -22,12 +22,7 @@ const server = http.createServer(function (request, response) {
   var filename = path.join(process.cwd(), uri);
 
   if (request.method === 'GET' && request.url === '/uruguay'){
-    console.log('mensaje');
-    var tabla = "";
-    console.log("pre");
-    consulta.filtrar(db).then((res) => {
-      tabla = res;
-
+    consulta.filtrar(db).then((tabla) => {
       response.writeHead(200, { "Content-Type": "text/html" });
       response.write(tabla);
       response.end();

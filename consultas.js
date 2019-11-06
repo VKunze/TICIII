@@ -2,25 +2,31 @@ var db = require('./script/dbconn.js').db;
 var fs = require('fs');
 var Promise = require('promise');
 
-var query1 = function(sql){
-    if(!sql) sql = "SELECT * FROM Barrio;";
-    return dbcon.query(sql, function(err, result){
-        if (err) throw err;
-        console.log("Result: " + result);
-    });
+var filtrosActivos = {
+    id : false,
+    fechaDeDeclaracion : false,
+    empresa : false,
+    cantidad : false,
+    cifus : false,
+    departamento : false,
+    paisDeOrigen : false,
+    pesoNeto : false,
+    descripcion : false,
+    viaDeTransporte : false,
+    seguro : false,
+    numeroDUA : false,
+    iva : false
 }
 
 var filtrar = function(db) {
-    console.log("inicio");
     return new Promise((resolve, reject)=>{
         var tableBody="";
         var queryString = 'SELECT * FROM import_uruguay';
-
+        getQuery();
         db.query(queryString, function(err, results) {
-            if (err) throw err;
-            console.log(results);    
-            
+            if (err) throw err;           
             for (i = 0; i < results.length; i++) {
+                '<div class="row">';
                 tableBody += '  <div class="cell">' + results[i].id + '</div>';
                 tableBody += '  <div class="cell">' + results[i].fechaDeDeclaracion + '</div>';
                 tableBody += '  <div class="cell">' + results[i].empresa + '</div>';
@@ -34,37 +40,27 @@ var filtrar = function(db) {
                 tableBody += '  <div class="cell">' + results[i].seguro + '</div>';
                 tableBody += '  <div class="cell">' + results[i].numeroDUA + '</div>';
                 tableBody += '  <div class="cell">' + results[i].iva + '</div>';
-            }       
+                '</div>';
+            }
             resolve(tableBody);
         });
     });
 }
 
-
-function mostrarDatos(tableBody, results) {
-    //console.log(results);
-    /* for (i = 0; i < results.length; i++) {
-        tableBody += '<tr>';
-        tableBody += '  <td>' + results[i].id + '</td>';
-        tableBody += '  <td>' + results[i].fechaDeDeclaracion + '</td>';
-        tableBody += '  <td>' + results[i].empresa + '</td>';
-        tableBody += '  <td>' + results[i].cantidad + '</td>';
-        tableBody += '  <td>' + results[i].cifus + '</td>';
-        tableBody += '  <td>' + results[i].departamento + '</td>';
-        tableBody += '  <td>' + results[i].paisDeOrigen + '</td>';
-        tableBody += '  <td>' + results[i].pesoNeto + '</td>';
-        tableBody += '  <td>' + results[i].descripcion + '</td>';
-        tableBody += '  <td>' + results[i].viaDeTransporte + '</td>';
-        tableBody += '  <td>' + results[i].seguro + '</td>';
-        tableBody += '  <td>' + results[i].numeroDUA + '</td>';
-        tableBody += '  <td>' + results[i].iva + '</td>';
-        tableBody += '</tr>';
-    } */
-    //console.log(tableBody);
-    return tableBody;
-}
+function getQuery(){
+    var query = 'SELECT * FROM import_uruguay';
+    var firstFilter = true;
+    for(elem in filtrosActivos){
+        if(filtrosActivos[elem]){
+            if(firstFilter){
+                query += 'WHERE ';
+                firstFilter = false;
+            }
+            query += 
+        }    }
+    return query;
+};
 
 module.exports = {
-    query1 : query1,
     filtrar : filtrar
 };
