@@ -1,8 +1,18 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-    document.querySelector("#uruguay").addEventListener("click", function() {
-        $.post("uruguay");
-        
-        //fetch('uruguay', { method: 'POST' });
+    document.querySelector("#uruguay").addEventListener("click", async function() {
+        const options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'text/html'
+            }
+        };
+        fetch('/uruguay', options).then(function(response){
+            var texto = response.text();
+            return texto;
+        }).then(function(html){
+            $('#uruguay').html(html);
+            console.log(html);
+        });
         mostrarBasesUy();
     })
     document.querySelector("#ImpTyA").addEventListener("click", function() {
