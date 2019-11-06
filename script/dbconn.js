@@ -7,6 +7,13 @@ var db = mysql.createConnection({
     database : "tic3"
 });
 
+var db1 = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "victoria15",
+    database : "usuarios"
+});
+
 /* con.connect(function(err){
     if (err) throw err;
     console.log("Connected!");
@@ -15,4 +22,6 @@ var db = mysql.createConnection({
 module.exports = {
     db : db
 };
-
+module.exports = {
+    db1 : db1
+};
