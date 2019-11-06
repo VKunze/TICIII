@@ -155,6 +155,7 @@ iframe {
 .row.header {
     color: #ffffff;
     background: #159eee;
+    opacity: 0.9;
 }
 
 @media screen and (max-width: 768px) {
