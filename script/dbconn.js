@@ -1,13 +1,13 @@
 var mysql = require('mysql');
 
-var db = mysql.createConnection({
+/* var db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "1997",
     database : "ticdb"
-});
+}); */
 
-var db1 = mysql.createConnection({
+var db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "victoria15",
@@ -18,13 +18,16 @@ db.connect(function(err){
     if (err) throw err;
     console.log("Connected!");
 })
-db1.connect(function(err){
-    if (err) throw err;
-    console.log("Connected!");
-})
+
+function query1(sql){
+    if(!sql) sql = "";
+    return db.query(sql, function(err, result){
+        if (err) throw err;
+    })
+}
 
 module.exports = {
     db: db,
-    db1:db1
+    query1: query1
 };
 

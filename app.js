@@ -5,6 +5,7 @@ var fs = require('fs');
 var Promise = require('promise');
 var consulta = require('./consultas.js');
 var db = require("./script/dbconn").db;
+var consultasIngresar = require('./script/consultasIngresar');
 
 
 var port = 8080;
@@ -27,12 +28,14 @@ const server = http.createServer(function (request, response) {
       response.write(tabla);
       response.end();
     });    
-  } else if {
+  } else if (request.method === 'POST' && request.url === '/ingresar'){
+    console.log("ingresar");
+    consultasIngresar.recuperar(request, response);
+  } else {
     if (uri === '/favicon.ico') {
       ignoreFavicon(uri, response);
       return;
     }
-    
     fs.exists(filename, function(exists) {
       handleNonExist(response, exists);
 
@@ -41,10 +44,6 @@ const server = http.createServer(function (request, response) {
       
       readfile(response, filename);    
     });
-  } else {
-      if(request.method === 'POST' && request.url === '/ingresar'){
-        console.log("HOLA");
-    }
   }
 }).listen(port);
 
