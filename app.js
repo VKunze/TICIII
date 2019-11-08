@@ -4,9 +4,9 @@ var path = require("path");
 var fs = require('fs');
 var Promise = require('promise');
 var consulta = require('./consultas.js');
-var db = require("./script/dbconn").db;
-var consultasIngresar = require('./script/consultasIngresar');
-
+var db = require("./server/dbconn").db;
+//var consultasIngresar = require('./script/consultasIngresar');
+//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 var port = 8080;
 mimeTypes = {

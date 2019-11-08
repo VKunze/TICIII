@@ -1,28 +1,71 @@
-var db = require('./script/dbconn.js').db;
+var db = require('./server/dbconn.js').db;
 var fs = require('fs');
 var Promise = require('promise');
 
-var filtrosActivos = {
-    id : false,
-    fechaDeDeclaracion : false,
-    empresa : false,
-    cantidad : false,
-    cifus : false,
-    departamento : false,
-    paisDeOrigen : false,
-    pesoNeto : false,
-    descripcion : false,
-    viaDeTransporte : false,
-    seguro : false,
-    numeroDUA : false,
-    iva : false
+var filtros = {
+    id : {
+        active: false,
+        value: null
+    },
+    fechaDeDeclaracion : {
+        active: false,
+        value: null
+    },
+    empresa : {
+        active: false,
+        value: null
+    },
+    cantidad : {
+        active: false,
+        value: null
+    },
+    cifus : {
+        active: false,
+        value: null
+    },
+    departamento : {
+        active: false,
+        value: null
+    },
+    paisDeOrigen : {
+        active: false,
+        value: null
+    },
+    pesoNeto : {
+        active: false,
+        value: null
+    },
+    descripcion : {
+        active: false,
+        value: null
+    },
+    viaDeTransporte : {
+        active: false,
+        value: null
+    },
+    seguro : {
+        active: false,
+        value: null
+    },
+    numeroDUA : {
+        active: false,
+        value: null
+    },
+    iva : {
+        active: false,
+        value: null
+    }
 }
 
 var filtrar = function(db) {
     return new Promise((resolve, reject)=>{
+        console.log("llegue a filtrar");
         var tableBody="";
         var queryString = 'SELECT * FROM import_uruguay';
-        getQuery();
+        actualizarFiltros("paisDeOrigen", "Uruguay");
+        console.log("Post actualizar filtros");
+        var query = getQuery();
+        console.log(query);
         db.query(queryString, function(err, results) {
             if (err) throw err;           
             for (i = 0; i < results.length; i++) {
@@ -50,17 +93,25 @@ var filtrar = function(db) {
 function getQuery(){
     var query = 'SELECT * FROM import_uruguay';
     var firstFilter = true;
-    for(elem in filtrosActivos){
-        if(filtrosActivos[elem]){
+    for(elem in filtros){
+        if(filtros[elem].active){
             if(firstFilter){
                 query += 'WHERE ';
                 firstFilter = false;
             }
-            query += "hola";
+            query += elem + ' = ' + filtros[elem].value;
         }
     }    
     return query;
 };
+
+function actualizarFiltros(columna, valor){
+    console.log(filtros[columna].active);
+    if(filtros.columna.active === false){
+        filtros.columna.active = true;
+    }
+    filtros.columna.value = valor;
+}
 
 module.exports = {
     filtrar : filtrar

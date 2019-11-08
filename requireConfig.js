@@ -8,7 +8,7 @@ requirejs.config({
         url : "url",
         path : "path",
         fs : 'fs',
-        db : './script/dbconn.js',
+        db : './server/dbconn.js',
         mysql : 'mysql'
     }
 });
