@@ -1,4 +1,4 @@
-var db = require('./dbconn.js');
+var db = require('../server/dbconn.js');
 var querystring = require('querystring');
 
 
@@ -10,14 +10,15 @@ function recuperar(request, response){
         console.log("datos parciales:" + datosparciales);
 
     });
+    var formulario="";
     request.on('end', () =>{
         
-        const formulario= JSON.parse(info);
+        formulario= JSON.parse(info);
         console.log(formulario);
         
     });
     
-    //var query1 = db.query1('INSERT INTO usuarios(usuario, password, pais) VALUES (?usuario,?password,?pais)', []);
+    var query1 = db.query1('INSERT INTO usuarios(usuario, password, pais) VALUES (\'' + formulario['Usuario'] + '\',\'' + formulario['Contraseña1'] +'\',\''+ formulario['Pais']+'\'');
 }
 
 module.exports = {

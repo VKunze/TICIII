@@ -5,7 +5,7 @@ var fs = require('fs');
 var Promise = require('promise');
 var consulta = require('./consultas.js');
 var db = require("./server/dbconn").db;
-//var consultasIngresar = require('./script/consultasIngresar');
+var consultasIngresar= require("./script/consultasIngresar");
 //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 var port = 8080;
