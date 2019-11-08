@@ -1,4 +1,4 @@
-var db = require('../server/dbconn.js');
+var db = require('./dbconn.js');
 var querystring = require('querystring');
 
 

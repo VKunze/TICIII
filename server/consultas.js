@@ -1,4 +1,4 @@
-var db = require('./server/dbconn.js').db;
+var db = require('./dbconn.js').db;
 var fs = require('fs');
 var Promise = require('promise');
 
@@ -61,13 +61,13 @@ var filtrar = function(db) {
     return new Promise((resolve, reject)=>{
         console.log("llegue a filtrar");
         var tableBody="";
-        var queryString = 'SELECT * FROM import_uruguay';
+        //var queryString = 'SELECT * FROM import_uruguay';
         actualizarFiltros("paisDeOrigen", "Uruguay");
         console.log("Post actualizar filtros");
-        var query = getQuery();
-        console.log(query);
+        var queryString = getQuery();
+        console.log(queryString);
         db.query(queryString, function(err, results) {
-            if (err) throw err;           
+            if (err) throw err;
             for (i = 0; i < results.length; i++) {
                 '<div class="row">';
                 tableBody += '  <div class="cell">' + results[i].id + '</div>';
@@ -85,6 +85,7 @@ var filtrar = function(db) {
                 tableBody += '  <div class="cell">' + results[i].iva + '</div>';
                 '</div>';
             }
+            console.log(tableBody);
             resolve(tableBody);
         });
     });
@@ -93,24 +94,27 @@ var filtrar = function(db) {
 function getQuery(){
     var query = 'SELECT * FROM import_uruguay';
     var firstFilter = true;
+    console.log("in get query");
     for(elem in filtros){
         if(filtros[elem].active){
             if(firstFilter){
-                query += 'WHERE ';
+                query += ' WHERE ';
                 firstFilter = false;
             }
-            query += elem + ' = ' + filtros[elem].value;
+            query += elem + ' = \'' + filtros[elem].value + '\'';
+            console.log(query);
         }
-    }    
+    } 
+    console.log("fin");   
     return query;
 };
 
 function actualizarFiltros(columna, valor){
     console.log(filtros[columna].active);
-    if(filtros.columna.active === false){
-        filtros.columna.active = true;
+    if(filtros[columna].active === false){
+        filtros[columna].active = true;
     }
-    filtros.columna.value = valor;
+    filtros[columna].value = valor;
 }
 
 module.exports = {

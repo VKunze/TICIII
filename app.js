@@ -3,10 +3,9 @@ var url = require("url");
 var path = require("path");
 var fs = require('fs');
 var Promise = require('promise');
-var consulta = require('./consultas.js');
+var consulta = require('./server/consultas');
 var db = require("./server/dbconn").db;
-var consultasIngresar= require("./script/consultasIngresar");
-//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+var consultasIngresar= require("./server/consultasIngresar");
 
 var port = 8080;
 mimeTypes = {
