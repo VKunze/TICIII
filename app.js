@@ -31,10 +31,6 @@ const server = http.createServer(function (request, response) {
       response.write(tabla);
       response.end();
     });  
-  } else if (request.method === 'GET' && tipo === "base"){
-    var base = request.url.slice(6, request.url.length);
-    //filtrarResponder("paisDeOrigen", pais);
-    return;
   } else if (request.method === 'GET' && tipo === "mult"){
     var filtros = JSON.parse(JSON.stringify(requrl.query));
     consulta.filtrar(db, filtros).then((tabla) => {
@@ -68,13 +64,6 @@ function filtrarResponder(columna, filtro){
     response.end();
   });  
 }
-
-/* function checkFiltroPais(request){
-  if (request.method === 'GET' && request.url === '/uruguay'){
-    filtrarResponder({paisDeOrigen: 'uruguay'});
-    console.log("llegue despues de filtrar");
-  }
-} */
 
 function readfile(response, filename){
   fs.readFile(filename, "binary", function(err, file) {
