@@ -58,11 +58,12 @@ var filtros = {
     }
 }
 
-var filtrar = function(db, columna, filtro) {
+var filtrar = function(db, filtrosAActualizar) {
     return new Promise((resolve, reject)=>{
         var tableBody="";
-        actualizarFiltros(columna, filtro);
+        actualizarFiltros(filtrosAActualizar);        
         var queryString = getQuery();
+        console.log(queryString);
         db.query(queryString, function(err, results) {
             if (err) throw err;
             for (i = 0; i < results.length; i++) {
@@ -82,8 +83,6 @@ var filtrar = function(db, columna, filtro) {
                 tableBody += '  <div class="cell" data-title="IVA">' + results[i].iva + '</div>';
                 tableBody += '</div>';
             }
-            //console.log("NUEVA CONSULTA");
-            //console.log(tableBody);
             resolve(tableBody);
         });
     });
@@ -97,6 +96,8 @@ function getQuery(){
             if(firstFilter){
                 query += ' WHERE ';
                 firstFilter = false;
+            } else {
+                query += ' and ';
             }
             query += elem + ' = \'' + filtros[elem].value + '\'';
         }
@@ -104,17 +105,18 @@ function getQuery(){
     return query;
 };
 
-function actualizarFiltros(columna, valor, valor2){
-    if(columna){
-        if(filtros[columna].active === false){
-            filtros[columna].active = true;
-        }
-        if(columna === "fechaDeDeclaracion"){
-            filtros[columna].desde = valor;
-            filtros[columna].hasta = valor2;
-        }else{
-            filtros[columna].value = valor;
-        }
+function actualizarFiltros(filtrosAActualizar){
+    for (columna in filtrosAActualizar){
+            if(filtros[columna].active === false){
+                filtros[columna].active = true;
+            }
+            /* if(columna === "fechaDeDeclaracion"){
+                filtros[columna].desde = valor;
+                filtros[columna].hasta = valor2;
+            }else{ */
+                filtros[columna].value = filtrosAActualizar[columna];
+            //}
+        //}
     }
 }
 

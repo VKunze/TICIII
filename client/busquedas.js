@@ -7,12 +7,9 @@ var options = {
 
 document.addEventListener("DOMContentLoaded", function(event) {
     document.querySelector("#uruguay").addEventListener("click", async function() {
-        console.log("in query selector");
         fetch("/pais:uruguay", options).then(function(response){
-            console.log("response");
             return response.text();
         }).then(function(html){
-            console.log(html);
             $('#data').html(html);
         });
         mostrarBasesUy();
@@ -73,32 +70,9 @@ var iframe = document.getElementById("filtrosIFrame");
 var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 innerDoc.addEventListener("DOMContentLoaded", function(event) {
     innerDoc.querySelector("#botonFiltro").addEventListener("click", function(){
-        var filtros = {
-            fechaDeDeclaracion : {
-                active: false,
-                desde: null,
-                hasta: null
-            }
-        };
-        if (innerDoc.getElementById("cbfecha").checked) {
-            var fechaDesde = innerDoc.getElementById("fechaDesde").value;
-            var fechaHasta = innerDoc.getElementById("fechaHasta").value;
-        
-            filtros["fechaDeDeclaracion"].active = true;
-            filtros["fechaDeDeclaracion"].desde = fechaDesde;
-            filtros["fechaDeDeclaracion"].hasta = fechaHasta;
-            
-        }
-        //console.log("stringify : "+ JSON.stringify(filtros));
-        options = {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-              },
-            data: JSON.stringify(filtros)
-        };
-        fetch("/mult", options).then(function(response){
+        var filtros = actualizarFiltros();
+        var url = getMultUrl(filtros);
+        fetch(url, options).then(function(response){
             return response.text();
         }).then(function(html){
             $('#data').html(html);
@@ -106,6 +80,48 @@ innerDoc.addEventListener("DOMContentLoaded", function(event) {
     });
 });
 
+function actualizarFiltros(){
+    var filtros = {
+        fechaDeDeclaracion : {
+            active: false,
+            desde: null,
+            hasta: null
+        },
+        empresa : {
+            active: false,
+            value: null
+        }
+    };
+    if (innerDoc.getElementById("cbfecha").checked) {
+        var fechaDesde = innerDoc.getElementById("fechaDesde").value;
+        var fechaHasta = innerDoc.getElementById("fechaHasta").value;
+        filtros["fechaDeDeclaracion"].active = true;
+        filtros["fechaDeDeclaracion"].desde = fechaDesde;
+        filtros["fechaDeDeclaracion"].hasta = fechaHasta;
+    }
+    if (innerDoc.getElementById("cbempresa").checked) {
+        var empresa = innerDoc.getElementById("empresa").value;
+        filtros["empresa"].active = true;
+        filtros["empresa"].value = empresa;
+    }
+    return filtros;
+}
+
+function getMultUrl(filtros){
+    var url = "/mult";
+    var first = true;
+    for (elem in filtros){
+        if (filtros[elem].active == true){
+            if(first){
+                url += "?" + elem + "=" + filtros[elem].value;
+                first = false;
+            } else{
+                url += "&" + elem + "=" + filtros[elem].value;
+            }
+        }                
+    }
+    return url;
+}
 
 function mostrarBasesUy() {
     document.getElementById('obj1').style.display = 'block';
