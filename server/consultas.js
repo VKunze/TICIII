@@ -66,21 +66,21 @@ var filtrar = function(db, columna, filtro) {
         db.query(queryString, function(err, results) {
             if (err) throw err;
             for (i = 0; i < results.length; i++) {
-                '<div class="row">';
-                tableBody += '  <div class="cell">' + results[i].id + '</div>';
-                tableBody += '  <div class="cell">' + results[i].fechaDeDeclaracion + '</div>';
-                tableBody += '  <div class="cell">' + results[i].empresa + '</div>';
-                tableBody += '  <div class="cell">' + results[i].cantidad + '</div>';
-                tableBody += '  <div class="cell">' + results[i].cifus + '</div>';
-                tableBody += '  <div class="cell">' + results[i].departamento + '</div>';
-                tableBody += '  <div class="cell">' + results[i].paisDeOrigen + '</div>';
-                tableBody += '  <div class="cell">' + results[i].pesoNeto + '</div>';
-                tableBody += '  <div class="cell">' + results[i].descripcion + '</div>';
-                tableBody += '  <div class="cell">' + results[i].viaDeTransporte + '</div>';
-                tableBody += '  <div class="cell">' + results[i].seguro + '</div>';
-                tableBody += '  <div class="cell">' + results[i].numeroDUA + '</div>';
-                tableBody += '  <div class="cell">' + results[i].iva + '</div>';
-                '</div>';
+                tableBody += '<div class="row">';
+                tableBody += '  <div class="cell" data-title="ID">' + results[i].id + '</div>';
+                tableBody += '  <div class="cell" data-title="FechaDeclaracion">' + results[i].fechaDeDeclaracion + '</div>';
+                tableBody += '  <div class="cell" data-title="Empresa">' + results[i].empresa + '</div>';
+                tableBody += '  <div class="cell" data-title="Cantidad">' + results[i].cantidad + '</div>';
+                tableBody += '  <div class="cell" data-title="CIF">' + results[i].cifus + '</div>';
+                tableBody += '  <div class="cell" data-title="Departamento">' + results[i].departamento + '</div>';
+                tableBody += '  <div class="cell" data-title="PaisOrigen">' + results[i].paisDeOrigen + '</div>';
+                tableBody += '  <div class="cell" data-title="PesoNeto">' + results[i].pesoNeto + '</div>';
+                tableBody += '  <div class="cell" data-title="Descripcion">' + results[i].descripcion + '</div>';
+                tableBody += '  <div class="cell" data-title="ViaDeTransporte">' + results[i].viaDeTransporte + '</div>';
+                tableBody += '  <div class="cell" data-title="Seguro">' + results[i].seguro + '</div>';
+                tableBody += '  <div class="cell" data-title="DUA">' + results[i].numeroDUA + '</div>';
+                tableBody += '  <div class="cell" data-title="IVA">' + results[i].iva + '</div>';
+                tableBody += '</div>';
             }
             //console.log("NUEVA CONSULTA");
             //console.log(tableBody);
