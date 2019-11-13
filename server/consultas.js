@@ -9,7 +9,8 @@ var filtros = {
     },
     fechaDeDeclaracion : {
         active: false,
-        value: null
+        desde: null,
+        hasta: null
     },
     empresa : {
         active: false,
@@ -57,15 +58,11 @@ var filtros = {
     }
 }
 
-var filtrar = function(db) {
+var filtrar = function(db, columna, filtro) {
     return new Promise((resolve, reject)=>{
-        console.log("llegue a filtrar");
         var tableBody="";
-        //var queryString = 'SELECT * FROM import_uruguay';
-        actualizarFiltros("paisDeOrigen", "Uruguay");
-        console.log("Post actualizar filtros");
+        actualizarFiltros(columna, filtro);
         var queryString = getQuery();
-        console.log(queryString);
         db.query(queryString, function(err, results) {
             if (err) throw err;
             for (i = 0; i < results.length; i++) {
@@ -85,7 +82,8 @@ var filtrar = function(db) {
                 tableBody += '  <div class="cell">' + results[i].iva + '</div>';
                 '</div>';
             }
-            console.log(tableBody);
+            //console.log("NUEVA CONSULTA");
+            //console.log(tableBody);
             resolve(tableBody);
         });
     });
@@ -94,7 +92,6 @@ var filtrar = function(db) {
 function getQuery(){
     var query = 'SELECT * FROM import_uruguay';
     var firstFilter = true;
-    console.log("in get query");
     for(elem in filtros){
         if(filtros[elem].active){
             if(firstFilter){
@@ -102,19 +99,23 @@ function getQuery(){
                 firstFilter = false;
             }
             query += elem + ' = \'' + filtros[elem].value + '\'';
-            console.log(query);
         }
-    } 
-    console.log("fin");   
+    }   
     return query;
 };
 
-function actualizarFiltros(columna, valor){
-    console.log(filtros[columna].active);
-    if(filtros[columna].active === false){
-        filtros[columna].active = true;
+function actualizarFiltros(columna, valor, valor2){
+    if(columna){
+        if(filtros[columna].active === false){
+            filtros[columna].active = true;
+        }
+        if(columna === "fechaDeDeclaracion"){
+            filtros[columna].desde = valor;
+            filtros[columna].hasta = valor2;
+        }else{
+            filtros[columna].value = valor;
+        }
     }
-    filtros[columna].value = valor;
 }
 
 module.exports = {

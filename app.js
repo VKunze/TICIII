@@ -21,12 +21,25 @@ const server = http.createServer(function (request, response) {
   var uri = url.parse(request.url).pathname;
   var filename = path.join(process.cwd(), uri);
 
-  if (request.method === 'GET' && request.url === '/uruguay'){
-    consulta.filtrar(db).then((tabla) => {
+  var tipo = request.url.slice(1,5);
+  if (request.method === 'GET' && tipo === 'pais'){ 
+    var pais = request.url.slice(6, request.url.length);
+    consulta.filtrar(db, "paisDeOrigen", pais).then((tabla) => {
       response.writeHead(200, { "Content-Type": "text/html" });
       response.write(tabla);
       response.end();
-    });    
+    });  
+  } else if (request.method === 'GET' && tipo === "base"){
+    var base = request.url.slice(6, request.url.length);
+    //filtrarResponder("paisDeOrigen", pais);
+    return;
+  } else if (request.method === 'GET' && tipo === "mult"){
+    var hola = '';
+    response.on('data', function(chunk){
+      hola += chunk;
+    })
+    console.log(hola);
+    return;
   } else if (request.method === 'POST' && request.url === '/ingresar'){
     console.log("ingresar");
     consultasIngresar.recuperar(request, response);
@@ -45,6 +58,23 @@ const server = http.createServer(function (request, response) {
     });
   }
 }).listen(port);
+
+function filtrarResponder(columna, filtro){
+  consulta.filtrar(db, columna, filtro).then((tabla) => {
+    console.log("en filtro");
+    response.writeHead(200, { "Content-Type": "text/html" });
+    response.write(tabla);
+    response.end();
+    console.log("post response end");
+  });  
+}
+
+/* function checkFiltroPais(request){
+  if (request.method === 'GET' && request.url === '/uruguay'){
+    filtrarResponder({paisDeOrigen: 'uruguay'});
+    console.log("llegue despues de filtrar");
+  }
+} */
 
 function readfile(response, filename){
   fs.readFile(filename, "binary", function(err, file) {
