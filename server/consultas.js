@@ -9,7 +9,8 @@ var filtros = {
     },
     fechaDeDeclaracion : {
         active: false,
-        value: null
+        desde: null,
+        hasta: null
     },
     empresa : {
         active: false,
@@ -17,10 +18,12 @@ var filtros = {
     },
     cantidad : {
         active: false,
+        signo: null,
         value: null
     },
     cifus : {
         active: false,
+        signo: null,
         value: null
     },
     departamento : {
@@ -41,7 +44,8 @@ var filtros = {
     },
     viaDeTransporte : {
         active: false,
-        value: null
+        value: null,
+        value2: null
     },
     seguro : {
         active: false,
@@ -57,35 +61,31 @@ var filtros = {
     }
 }
 
-var filtrar = function(db) {
+var filtrar = function(db, filtrosAActualizar) {
     return new Promise((resolve, reject)=>{
-        console.log("llegue a filtrar");
         var tableBody="";
-        //var queryString = 'SELECT * FROM import_uruguay';
-        actualizarFiltros("paisDeOrigen", "Uruguay");
-        console.log("Post actualizar filtros");
+        actualizarFiltros(filtrosAActualizar);        
         var queryString = getQuery();
         console.log(queryString);
         db.query(queryString, function(err, results) {
             if (err) throw err;
             for (i = 0; i < results.length; i++) {
-                '<div class="row">';
-                tableBody += '  <div class="cell">' + results[i].id + '</div>';
-                tableBody += '  <div class="cell">' + results[i].fechaDeDeclaracion + '</div>';
-                tableBody += '  <div class="cell">' + results[i].empresa + '</div>';
-                tableBody += '  <div class="cell">' + results[i].cantidad + '</div>';
-                tableBody += '  <div class="cell">' + results[i].cifus + '</div>';
-                tableBody += '  <div class="cell">' + results[i].departamento + '</div>';
-                tableBody += '  <div class="cell">' + results[i].paisDeOrigen + '</div>';
-                tableBody += '  <div class="cell">' + results[i].pesoNeto + '</div>';
-                tableBody += '  <div class="cell">' + results[i].descripcion + '</div>';
-                tableBody += '  <div class="cell">' + results[i].viaDeTransporte + '</div>';
-                tableBody += '  <div class="cell">' + results[i].seguro + '</div>';
-                tableBody += '  <div class="cell">' + results[i].numeroDUA + '</div>';
-                tableBody += '  <div class="cell">' + results[i].iva + '</div>';
-                '</div>';
+                tableBody += '<div class="row">';
+                tableBody += '  <div class="cell" data-title="ID">' + results[i].id + '</div>';
+                tableBody += '  <div class="cell" data-title="FechaDeclaracion">' + results[i].fechaDeDeclaracion + '</div>';
+                tableBody += '  <div class="cell" data-title="Empresa">' + results[i].empresa + '</div>';
+                tableBody += '  <div class="cell" data-title="Cantidad">' + results[i].cantidad + '</div>';
+                tableBody += '  <div class="cell" data-title="CIF">' + results[i].cifus + '</div>';
+                tableBody += '  <div class="cell" data-title="Departamento">' + results[i].departamento + '</div>';
+                tableBody += '  <div class="cell" data-title="PaisOrigen">' + results[i].paisDeOrigen + '</div>';
+                tableBody += '  <div class="cell" data-title="PesoNeto">' + results[i].pesoNeto + '</div>';
+                tableBody += '  <div class="cell" data-title="Descripcion">' + results[i].descripcion + '</div>';
+                tableBody += '  <div class="cell" data-title="ViaDeTransporte">' + results[i].viaDeTransporte + '</div>';
+                tableBody += '  <div class="cell" data-title="Seguro">' + results[i].seguro + '</div>';
+                tableBody += '  <div class="cell" data-title="DUA">' + results[i].numeroDUA + '</div>';
+                tableBody += '  <div class="cell" data-title="IVA">' + results[i].iva + '</div>';
+                tableBody += '</div>';
             }
-            console.log(tableBody);
             resolve(tableBody);
         });
     });
@@ -94,27 +94,58 @@ var filtrar = function(db) {
 function getQuery(){
     var query = 'SELECT * FROM import_uruguay';
     var firstFilter = true;
-    console.log("in get query");
-    for(elem in filtros){
-        if(filtros[elem].active){
+    for(columna in filtros){
+        if(filtros[columna].active){
             if(firstFilter){
                 query += ' WHERE ';
                 firstFilter = false;
+            } else {
+                query += ' and ';
             }
-            query += elem + ' = \'' + filtros[elem].value + '\'';
-            console.log(query);
+            if (columna === "fechaDeDeclaracion"){
+                query += columna + ' >= \'' + filtros[columna].desde + '\'';
+                query += ' and ';
+                query += columna + ' <= \'' + filtros[columna].hasta + '\'';
+            } else if (columna == "viaDeTransporte" && filtros[columna].value2){
+                query += '(' + columna + ' = \'' + filtros[columna].value + '\' or ' + columna + ' = \'' + filtros[columna].value2 + ' \')';
+            } else {
+                if (columna == "cantidad" || columna == "cifus"){
+                    query += columna + ' ' + filtros[columna].signo + ' \'';
+                } else {
+                    query += columna + ' = \'';
+                }
+                query += filtros[columna].value + '\'';
+                
+            }
+
         }
-    } 
-    console.log("fin");   
+    }   
     return query;
 };
 
-function actualizarFiltros(columna, valor){
-    console.log(filtros[columna].active);
-    if(filtros[columna].active === false){
-        filtros[columna].active = true;
+function actualizarFiltros(filtrosAActualizar){
+    for (columna in filtros){
+        if (columna in filtrosAActualizar){
+            if(filtros[columna].active === false){
+                filtros[columna].active = true;
+            }
+            if(columna === "fechaDeDeclaracion"){
+                filtros[columna].desde = filtrosAActualizar[columna];
+                filtros[columna].hasta = filtrosAActualizar["hasta"];
+            } else { 
+                filtros[columna].value = filtrosAActualizar[columna];
+            }
+            //Casos que tienen un segundo valor relevante
+            if (columna == "cantidad" || columna == "cifus"){
+                filtros[columna].signo = filtrosAActualizar["signo" + columna];
+            }
+            if (columna == "viaDeTransporte" && filtrosAActualizar["viaDeTransporte2"]){
+                filtros[columna].value2 = filtrosAActualizar["viaDeTransporte2"];
+            }
+        } else if (columna != "paisDeOrigen" && filtros[columna].active){
+            filtros[columna].active = false;
+        }
     }
-    filtros[columna].value = valor;
 }
 
 module.exports = {
