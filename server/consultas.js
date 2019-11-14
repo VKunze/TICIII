@@ -18,10 +18,12 @@ var filtros = {
     },
     cantidad : {
         active: false,
+        signo: null,
         value: null
     },
     cifus : {
         active: false,
+        signo: null,
         value: null
     },
     departamento : {
@@ -42,7 +44,8 @@ var filtros = {
     },
     viaDeTransporte : {
         active: false,
-        value: null
+        value: null,
+        value2: null
     },
     seguro : {
         active: false,
@@ -91,32 +94,57 @@ var filtrar = function(db, filtrosAActualizar) {
 function getQuery(){
     var query = 'SELECT * FROM import_uruguay';
     var firstFilter = true;
-    for(elem in filtros){
-        if(filtros[elem].active){
+    for(columna in filtros){
+        if(filtros[columna].active){
             if(firstFilter){
                 query += ' WHERE ';
                 firstFilter = false;
             } else {
                 query += ' and ';
             }
-            query += elem + ' = \'' + filtros[elem].value + '\'';
+            if (columna === "fechaDeDeclaracion"){
+                query += columna + ' >= \'' + filtros[columna].desde + '\'';
+                query += ' and ';
+                query += columna + ' <= \'' + filtros[columna].hasta + '\'';
+            } else if (columna == "viaDeTransporte" && filtros[columna].value2){
+                query += '(' + columna + ' = \'' + filtros[columna].value + '\' or ' + columna + ' = \'' + filtros[columna].value2 + ' \')';
+            } else {
+                if (columna == "cantidad" || columna == "cifus"){
+                    query += columna + ' ' + filtros[columna].signo + ' \'';
+                } else {
+                    query += columna + ' = \'';
+                }
+                query += filtros[columna].value + '\'';
+                
+            }
+
         }
     }   
     return query;
 };
 
 function actualizarFiltros(filtrosAActualizar){
-    for (columna in filtrosAActualizar){
+    for (columna in filtros){
+        if (columna in filtrosAActualizar){
             if(filtros[columna].active === false){
                 filtros[columna].active = true;
             }
-            /* if(columna === "fechaDeDeclaracion"){
-                filtros[columna].desde = valor;
-                filtros[columna].hasta = valor2;
-            }else{ */
+            if(columna === "fechaDeDeclaracion"){
+                filtros[columna].desde = filtrosAActualizar[columna];
+                filtros[columna].hasta = filtrosAActualizar["hasta"];
+            } else { 
                 filtros[columna].value = filtrosAActualizar[columna];
-            //}
-        //}
+            }
+            //Casos que tienen un segundo valor relevante
+            if (columna == "cantidad" || columna == "cifus"){
+                filtros[columna].signo = filtrosAActualizar["signo" + columna];
+            }
+            if (columna == "viaDeTransporte" && filtrosAActualizar["viaDeTransporte2"]){
+                filtros[columna].value2 = filtrosAActualizar["viaDeTransporte2"];
+            }
+        } else if (columna != "paisDeOrigen" && filtros[columna].active){
+            filtros[columna].active = false;
+        }
     }
 }
 

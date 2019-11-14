@@ -17,8 +17,17 @@ function recuperar(request, response){
         console.log(formulario);
         
     });
-    
-    var query1 = db.query1('INSERT INTO usuarios(usuario, password, pais) VALUES (\'' + formulario['Usuario'] + '\',\'' + formulario['Contraseña1'] +'\',\''+ formulario['Pais']+'\'');
+    /* var usuario=formulario['Usuario'];
+    var password=formulario['Contraseña1'];
+    var pais=formulario['Pais']; */
+    /* var query1 = db.query1("INSERT INTO usuarios(usuario, password, pais) VALUES ('?')"); */
+    /* var query1 = db.query1('INSERT INTO usuarios(usuario, password, pais) VALUES (\'' + formulario['Usuario'] + '\',\'' + formulario['Contraseña1'] +'\',\''+ formulario['Pais']+'\''); */
+    var query1 = db.query1('INSERT INTO usuarios(usuario, password, pais) VALUES (formulario['Usuario'], formulario['Contraseña1'] ,+ formulario['Pais']');
+
+
+   /*  db.query1(query1, [formulario], function(err, result){
+        if(err) throw err;
+    }); */
 }
 
 module.exports = {
