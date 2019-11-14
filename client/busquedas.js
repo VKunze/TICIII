@@ -11,17 +11,19 @@ var filtros = "";
 var  iframe2 = document.getElementById("tablaIFrame");
 var innerDoc2 = iframe.contentDocument || iframe.contentWindow.document;
 
-innerDoc2.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", function(event) {
     inicializarFiltros();
-    innerDoc2.querySelector("#uruguay").addEventListener("click", async function() {
+    document.querySelector("#uruguay").addEventListener("click", async function() {
         fetch("/pais:uruguay", options).then(function(response){
             return response.text();
         }).then(function(html){
-            $('#data').html(html);
+            /* innerDoc2.getElementById('data').html(html); */
+            console.log(html);
+            $("#tablaIFrame").contents().find("#data").html(html);
         });
         mostrarBasesUy();
     })
-    innerDoc2.querySelector("#brasil").addEventListener("click", async function() {
+    document.querySelector("#brasil").addEventListener("click", async function() {
         fetch("/pais:brasil", options).then(function(response){
             return response.text();
         }).then(function(html){
@@ -29,7 +31,7 @@ innerDoc2.addEventListener("DOMContentLoaded", function(event) {
         });
         mostrarBasesUy();
     })
-    innerDoc2.querySelector("#argentina").addEventListener("click", async function() {
+    document.querySelector("#argentina").addEventListener("click", async function() {
         fetch("/pais:argentina", options).then(function(response){
             return response.text();
         }).then(function(html){
@@ -37,7 +39,7 @@ innerDoc2.addEventListener("DOMContentLoaded", function(event) {
         });
         mostrarBasesUy();
     })
-    innerDoc2.querySelector("#paraguay").addEventListener("click", async function() {
+    document.querySelector("#paraguay").addEventListener("click", async function() {
         fetch("/pais:paraguay", options).then(function(response){
             return response.text();
         }).then(function(html){
@@ -45,7 +47,7 @@ innerDoc2.addEventListener("DOMContentLoaded", function(event) {
         });
         mostrarBasesUy();
     })
-    innerDoc2.querySelector("#bolivia").addEventListener("click", async function() {
+    document.querySelector("#bolivia").addEventListener("click", async function() {
         fetch("/pais:bolivia", options).then(function(response){
             return response.text();
         }).then(function(html){
@@ -53,7 +55,7 @@ innerDoc2.addEventListener("DOMContentLoaded", function(event) {
         });
         mostrarBasesUy();
     })
-    innerDoc2.querySelector("#estadosunidos").addEventListener("click", async function() {
+    document.querySelector("#estadosunidos").addEventListener("click", async function() {
         fetch("/pais:estadosunidos", options).then(function(response){
             return response.text();
         }).then(function(html){
@@ -62,7 +64,20 @@ innerDoc2.addEventListener("DOMContentLoaded", function(event) {
         mostrarBasesUy();
     })
 
-    innerDoc2.querySelector("#ImpTyA").addEventListener("click", function() {
+    document.querySelector("#ImpTyA").addEventListener("click", function() {
+        filtros["viaDeTransporte"].active = true;
+        filtros["viaDeTransporte"].value = "VÍA AERÉA";
+        filtros["viaDeTransporte"].value2 = "VÍA TERRESTRE";
+
+        var url = getMultUrl();
+        /* fetch(url, options).then(function(response){
+            return response.text();
+        }).then(function(html){
+            $('#data').html(html);
+        }); */
+        mostrarTablaImpTyA();
+    })
+    document.querySelector("#ExpTyA").addEventListener("click", function() {
         filtros["viaDeTransporte"].active = true;
         filtros["viaDeTransporte"].value = "VÍA AERÉA";
         filtros["viaDeTransporte"].value2 = "VÍA TERRESTRE";
@@ -75,20 +90,7 @@ innerDoc2.addEventListener("DOMContentLoaded", function(event) {
         });
         mostrarTablaImpTyA();
     })
-    innerDoc2.querySelector("#ExpTyA").addEventListener("click", function() {
-        filtros["viaDeTransporte"].active = true;
-        filtros["viaDeTransporte"].value = "VÍA AERÉA";
-        filtros["viaDeTransporte"].value2 = "VÍA TERRESTRE";
-
-        var url = getMultUrl();
-        fetch(url, options).then(function(response){
-            return response.text();
-        }).then(function(html){
-            $('#data').html(html);
-        });
-        mostrarTablaImpTyA();
-    })
-    innerDoc2.querySelector("#ImpM").addEventListener("click", function() {
+    document.querySelector("#ImpM").addEventListener("click", function() {
         filtros["viaDeTransporte"].active = true;
         filtros["viaDeTransporte"].value = "VÍA MARÍTIMA";
 
@@ -100,7 +102,7 @@ innerDoc2.addEventListener("DOMContentLoaded", function(event) {
         });
         mostrarTablaImpTyA();
     })
-    innerDoc2.querySelector("#ExpM").addEventListener("click", function() {
+    document.querySelector("#ExpM").addEventListener("click", function() {
         filtros["viaDeTransporte"].active = true;
         filtros["viaDeTransporte"].value = "VÍA MARÍTIMA";
 
