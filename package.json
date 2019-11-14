@@ -6,7 +6,9 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "alert": "^1.0.0",
     "express": "~4.16.0",
+    "js-alert": "^1.0.4",
     "jsdom": "^15.2.0"
   }
 }

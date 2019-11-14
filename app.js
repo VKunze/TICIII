@@ -38,9 +38,10 @@ const server = http.createServer(function (request, response) {
       response.write(tabla);
       response.end();
     });
+  } else if (request.method === 'POST' && request.url === '/registrarse'){
+    consultasIngresar.guardar(request, response);
   } else if (request.method === 'POST' && request.url === '/ingresar'){
-    console.log("ingresar");
-    consultasIngresar.recuperar(request, response);
+    consultasIngresar.verificar(request, response);
   } else {
     if (uri === '/favicon.ico') {
       ignoreFavicon(uri, response);
@@ -56,14 +57,6 @@ const server = http.createServer(function (request, response) {
     });
   }
 }).listen(port);
-
-function filtrarResponder(columna, filtro){
-  consulta.filtrar(db, columna, filtro).then((tabla) => {
-    response.writeHead(200, { "Content-Type": "text/html" });
-    response.write(tabla);
-    response.end();
-  });  
-}
 
 function readfile(response, filename){
   fs.readFile(filename, "binary", function(err, file) {
