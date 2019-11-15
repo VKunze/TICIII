@@ -18,33 +18,46 @@ mimeTypes = {
       "css": "text/css"
     };
 
-const server = http.createServer(function (request, response) {
-  var requrl = url.parse(request.url, true);
-  var uri = requrl.pathname;
-  var filename = path.join(process.cwd(), uri);
+const server = http.createServer(function(request, response) {
+    var requrl = url.parse(request.url, true);
+    var uri = requrl.pathname;
+    var filename = path.join(process.cwd(), uri);
 
-  var tipo = request.url.slice(1,5);
-  if (request.method === 'GET' && tipo === 'pais'){ 
-    var pais = request.url.slice(6, request.url.length);
-    consulta.filtrar(db, { "paisDeOrigen": pais }).then((tabla) => {
-      response.writeHead(200, { "Content-Type": "text/html" });
-      response.write(tabla);
-      response.end();
-    });  
-  } else if (request.method === 'GET' && tipo === "mult"){
-    var filtros = JSON.parse(JSON.stringify(requrl.query));
-    consulta.filtrar(db, filtros).then((tabla) => {
-      response.writeHead(200, { "Content-Type": "text/html" });
-      response.write(tabla);
-      response.end();
-    });
-  } else if (request.method === 'POST' && request.url === '/ingresar'){
-    console.log("ingresar");
-    consultasIngresar.recuperar(request, response);
-  } else {
-    if (uri === '/favicon.ico') {
-      ignoreFavicon(uri, response);
-      return;
+    var tipo = request.url.slice(1, 5);
+    //console.log(request.url);
+    if (request.method === 'GET' && tipo === 'pais') {
+        var pais = request.url.slice(6, request.url.length);
+        consulta.filtrar(db, { "paisDeOrigen": pais }).then((tabla) => {
+            response.writeHead(200, { "Content-Type": "text/html" });
+            response.write(tabla);
+            response.end();
+        });
+    } else if (request.method === 'GET' && tipo === "mult") {
+        var filtros = JSON.parse(JSON.stringify(requrl.query));
+        console.log("en filtros");
+        consulta.filtrar(db, filtros).then((tabla) => {
+            response.writeHead(200, { "Content-Type": "text/html" });
+            response.write(tabla);
+            response.end();
+        });
+    } else if (request.method === 'POST' && request.url === '/registrarse') {
+        consultasIngresar.guardar(request, response);
+    } else if (request.method === 'POST' && request.url === '/ingresar') {
+        consultasIngresar.verificar(request, response);
+    } else {
+        if (uri === '/favicon.ico') {
+            ignoreFavicon(uri, response);
+            return;
+        }
+        fs.exists(filename, function(exists) {
+            handleNonExist(response, exists);
+            console.log(filename);
+
+            if (fs.statSync(filename).isDirectory())
+                filename += '/index.html';
+
+            readfile(response, filename);
+        });
     }
     fs.exists(filename, function(exists) {
       handleNonExist(response, exists);

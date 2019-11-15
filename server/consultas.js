@@ -62,15 +62,17 @@ var filtros = {
 }
 
 var filtrar = function(db, filtrosAActualizar) {
-    return new Promise((resolve, reject)=>{
-        var tableBody="";
-        actualizarFiltros(filtrosAActualizar);        
+    return new Promise((resolve, reject) => {
+        var tableBody = "";
+        actualizarFiltros(filtrosAActualizar);
         var queryString = getQuery();
         console.log(queryString);
         db.query(queryString, function(err, results) {
             if (err) throw err;
             for (i = 0; i < results.length; i++) {
-                tableBody += '<div class="row">';
+                if (i > 0) {
+                    tableBody += '<div class="row">';
+                }
                 tableBody += '  <div class="cell" data-title="ID">' + results[i].id + '</div>';
                 tableBody += '  <div class="cell" data-title="FechaDeclaracion">' + results[i].fechaDeDeclaracion + '</div>';
                 tableBody += '  <div class="cell" data-title="Empresa">' + results[i].empresa + '</div>';
@@ -84,7 +86,14 @@ var filtrar = function(db, filtrosAActualizar) {
                 tableBody += '  <div class="cell" data-title="Seguro">' + results[i].seguro + '</div>';
                 tableBody += '  <div class="cell" data-title="DUA">' + results[i].numeroDUA + '</div>';
                 tableBody += '  <div class="cell" data-title="IVA">' + results[i].iva + '</div>';
-                tableBody += '</div>';
+
+                //tableBody += '</tr>';
+
+                if (i < results.length - 1) {
+                    tableBody += '</div>';
+                    console.log('entro if');
+                }
+
             }
             resolve(tableBody);
         });
@@ -94,55 +103,55 @@ var filtrar = function(db, filtrosAActualizar) {
 function getQuery(){
     var query = 'SELECT * FROM import_uruguay';
     var firstFilter = true;
-    for(columna in filtros){
-        if(filtros[columna].active){
-            if(firstFilter){
+    for (columna in filtros) {
+        if (filtros[columna].active) {
+            if (firstFilter) {
                 query += ' WHERE ';
                 firstFilter = false;
             } else {
                 query += ' and ';
             }
-            if (columna === "fechaDeDeclaracion"){
+            if (columna === "fechaDeDeclaracion") {
                 query += columna + ' >= \'' + filtros[columna].desde + '\'';
                 query += ' and ';
                 query += columna + ' <= \'' + filtros[columna].hasta + '\'';
-            } else if (columna == "viaDeTransporte" && filtros[columna].value2){
+            } else if (columna == "viaDeTransporte" && filtros[columna].value2) {
                 query += '(' + columna + ' = \'' + filtros[columna].value + '\' or ' + columna + ' = \'' + filtros[columna].value2 + ' \')';
             } else {
-                if (columna == "cantidad" || columna == "cifus"){
+                if (columna == "cantidad" || columna == "cifus") {
                     query += columna + ' ' + filtros[columna].signo + ' \'';
                 } else {
                     query += columna + ' = \'';
                 }
                 query += filtros[columna].value + '\'';
-                
+
             }
 
         }
-    }   
+    }
     return query;
 };
 
-function actualizarFiltros(filtrosAActualizar){
-    for (columna in filtros){
-        if (columna in filtrosAActualizar){
-            if(filtros[columna].active === false){
+function actualizarFiltros(filtrosAActualizar) {
+    for (columna in filtros) {
+        if (columna in filtrosAActualizar) {
+            if (filtros[columna].active === false) {
                 filtros[columna].active = true;
             }
-            if(columna === "fechaDeDeclaracion"){
+            if (columna === "fechaDeDeclaracion") {
                 filtros[columna].desde = filtrosAActualizar[columna];
                 filtros[columna].hasta = filtrosAActualizar["hasta"];
-            } else { 
+            } else {
                 filtros[columna].value = filtrosAActualizar[columna];
             }
             //Casos que tienen un segundo valor relevante
-            if (columna == "cantidad" || columna == "cifus"){
+            if (columna == "cantidad" || columna == "cifus") {
                 filtros[columna].signo = filtrosAActualizar["signo" + columna];
             }
-            if (columna == "viaDeTransporte" && filtrosAActualizar["viaDeTransporte2"]){
+            if (columna == "viaDeTransporte" && filtrosAActualizar["viaDeTransporte2"]) {
                 filtros[columna].value2 = filtrosAActualizar["viaDeTransporte2"];
             }
-        } else if (columna != "paisDeOrigen" && filtros[columna].active){
+        } else if (columna != "paisDeOrigen" && filtros[columna].active) {
             filtros[columna].active = false;
         }
     }
