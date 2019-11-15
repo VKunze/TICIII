@@ -8,11 +8,8 @@ var iframe = document.getElementById("filtrosIFrame");
 var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 var filtros = "";
 
-
-
 var iframe2 = document.getElementById("tablaIFrame");
 var innerDoc2 = iframe.contentDocument || iframe.contentWindow.document;
-
 
 var htmlAImprimir = '';
 
@@ -23,12 +20,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch("/pais:uruguay", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-
-            //htmlAImprimir = html;
-            document.getElementById("data").innerHTML = html;
-
             htmlAImprimir = html;
-
             /* innerDoc2.getElementById('data').html(html); */
             //console.log(innerDoc2);
             // console.log($("#tablaIFrame").contents().find("#data"));
