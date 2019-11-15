@@ -8,9 +8,6 @@ var iframe = document.getElementById("filtrosIFrame");
 var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 var filtros = "";
 
-var iframe2 = document.getElementById("tablaIFrame");
-var innerDoc2 = iframe.contentDocument || iframe.contentWindow.document;
-
 var htmlAImprimir = '';
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -20,13 +17,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch("/pais:uruguay", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            htmlAImprimir = html;
-            /* innerDoc2.getElementById('data').html(html); */
-            //console.log(innerDoc2);
-            // console.log($("#tablaIFrame").contents().find("#data"));
-            // $("#tablaIFrame").contents().find("#data").html(html);
-
-            //innerDoc2.getElementById('data').appendChild(html);
+            document.getElementById("data").innerHTML = html;
         });
         mostrarBasesUy();
     })
@@ -34,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch("/pais:brasil", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            $('#data').html(html);
+            document.getElementById("data").innerHTML = html;
         });
         mostrarBasesUy();
     })
@@ -42,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch("/pais:argentina", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            $('#data').html(html);
+            document.getElementById("data").innerHTML = html;
         });
         mostrarBasesUy();
     })
@@ -50,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch("/pais:paraguay", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            $('#data').html(html);
+            document.getElementById("data").innerHTML = html;
         });
         mostrarBasesUy();
     })
@@ -58,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch("/pais:bolivia", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            $('#data').html(html);
+            document.getElementById("data").innerHTML = html;
         });
         mostrarBasesUy();
     })
@@ -66,78 +57,82 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch("/pais:estadosunidos", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            $('#data').html(html);
+            document.getElementById("data").innerHTML = html;
         });
         mostrarBasesUy();
     })
 
     document.querySelector("#ImpTyA").addEventListener("click", function() {
         filtros["viaDeTransporte"].active = true;
-        filtros["viaDeTransporte"].value = "VÍA AERÉA";
-        filtros["viaDeTransporte"].value2 = "VÍA TERRESTRE";
+        filtros["viaDeTransporte"].value = "VIA AEREA";
+        filtros["viaDeTransporte"].value2 = "VIA CARRETERA";
 
         var url = getMultUrl();
         fetch(url, options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            //$('#data').html(html);
-            // $("#tablaIFrame").contents().find("#data").html(html);
+            document.getElementById("data").innerHTML = html;
         });
         mostrarTablaImpTyA();
-        innerDoc2.addEventListener("DOMContentLoaded", function() {
-            console.log(innerDoc2);
-            innerDoc2.getElementById('data').appendChild(htmlAImprimir);
-        });
     })
     document.querySelector("#ExpTyA").addEventListener("click", function() {
         filtros["viaDeTransporte"].active = true;
-        filtros["viaDeTransporte"].value = "VÍA AERÉA";
-        filtros["viaDeTransporte"].value2 = "VÍA TERRESTRE";
+        filtros["viaDeTransporte"].value = "VIA AEREA";
+        filtros["viaDeTransporte"].value2 = "VIA CARRETERA";
 
         var url = getMultUrl();
         fetch(url, options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            $('#data').html(html);
+            document.getElementById("data").innerHTML = html;
         });
         mostrarTablaImpTyA();
     })
     document.querySelector("#ImpM").addEventListener("click", function() {
         filtros["viaDeTransporte"].active = true;
-        filtros["viaDeTransporte"].value = "VÍA MARÍTIMA";
+        filtros["viaDeTransporte"].value = "VIA MARITIMA";
 
         var url = getMultUrl();
         fetch(url, options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            $('#data').html(html);
+            document.getElementById("data").innerHTML = html;
         });
         mostrarTablaImpTyA();
     })
     document.querySelector("#ExpM").addEventListener("click", function() {
         filtros["viaDeTransporte"].active = true;
-        filtros["viaDeTransporte"].value = "VÍA MARÍTIMA";
+        filtros["viaDeTransporte"].value = "VIA MARITIMA";
 
         var url = getMultUrl();
         fetch(url, options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            $('#data').html(html);
+            document.getElementById("data").innerHTML = html;
         });
         mostrarTablaImpTyA();
     })
+    console.log(innerDoc);
 
 });
+
+// console.log("pre cargar tabla");
+// innerDoc2.addEventListener("DOMContentLoaded", function() {
+//     console.log("cargo tabla");
+
+//     innerDoc2.getElementById('data').appendChild(htmlAImprimir);
+// });
 
 
 innerDoc.addEventListener("DOMContentLoaded", function(event) {
     innerDoc.querySelector("#botonFiltro").addEventListener("click", function() {
+        Console.LOG("RECONOCI BOTON");
         actualizarFiltros();
         var url = getMultUrl();
         fetch(url, options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            $('#data').html(html);
+            document.getElementById("data").innerHTML = html;
         });
     });
 });
