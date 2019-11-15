@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
 
     document.querySelector("#ImpTyA").addEventListener("click", function() {
-        filtros["viaDeTransporte"].active = true;
+        /* filtros["viaDeTransporte"].active = true;
         filtros["viaDeTransporte"].value = "VIA AEREA";
         filtros["viaDeTransporte"].value2 = "VIA CARRETERA";
 
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }).then(function(html) {
             //     //document.getElementById("data").innerHTML = html;
             $('#data').html(html);
-        });
+        }); */
         mostrarTablaImpTyA();
     })
     document.querySelector("#ExpTyA").addEventListener("click", function() {
@@ -157,7 +157,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         mostrarTablaImpTyA();
     })
     document.querySelector("#botonFiltro").addEventListener("click", function() {
-        console.log("RECONOCI BOTON");
         actualizarFiltros();
         var url = getMultUrl();
         fetch(url, options).then(function(response) {
@@ -170,6 +169,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function actualizarFiltros() {
+    inicializarFiltros();
     if (document.getElementById("cbfecha").checked) {
         var fechaDesde = document.getElementById("fechaDesde").value;
         var fechaHasta = document.getElementById("fechaHasta").value;
