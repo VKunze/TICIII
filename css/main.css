@@ -11602,8 +11602,7 @@ input#numeroDUA {
     width: 130px !important;
 }
 
-
-/*#botonFiltro:hover {
+#botonFiltro:hover {
     background: #e2e2e2;
     box-shadow: inset 0 0 0 3px #7fc1ec;
-}*/
+}
