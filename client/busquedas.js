@@ -128,9 +128,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         filtros["viaDeTransporte"].value2 = "VÍA TERRESTRE";
 
         var url = getMultUrl();
-        fetch(url, options).then(function(response){
+        fetch(url, options).then(function(response) {
             return response.text();
-        }).then(function(html){
+        }).then(function(html) {
             $('#data').html(html);
         });
         mostrarTablaImpTyA();
@@ -140,9 +140,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         filtros["viaDeTransporte"].value = "VÍA MARÍTIMA";
 
         var url = getMultUrl();
-        fetch(url, options).then(function(response){
+        fetch(url, options).then(function(response) {
             return response.text();
-        }).then(function(html){
+        }).then(function(html) {
             $('#data').html(html);
         });
         mostrarTablaImpTyA();
@@ -152,72 +152,72 @@ document.addEventListener("DOMContentLoaded", function(event) {
         filtros["viaDeTransporte"].value = "VÍA MARÍTIMA";
 
         var url = getMultUrl();
-        fetch(url, options).then(function(response){
+        fetch(url, options).then(function(response) {
             return response.text();
-        }).then(function(html){
+        }).then(function(html) {
             $('#data').html(html);
         });
         mostrarTablaImpTyA();
-    }) 
-    
+    })
+
 });
 
-// function waitForElement(id, callback) {
-//     var poops = setInterval(function() {
-//         if (innerDoc.getElementById(id)) {
-//             clearInterval(poops);
-//             callback();
-//         }
-//     }, 100);
-// }
+function waitForElement(id, callback) {
+    var poops = setInterval(function() {
+        if (innerDoc.getElementById(id)) {
+            clearInterval(poops);
+            callback();
+        }
+    }, 100);
+}
 
-// waitForElement("j", function() {
-//     alert("element is loaded.. do stuff");
-// });
+waitForElement("j", function() {
+    alert("element is loaded.. do stuff");
+});
 console.log(innerDoc);
 innerDoc.addEventListener("DOMContentLoaded", function(event) {
     console.log("Estoy vivoo!!");
-    // console.log("reconoci contenido cargo");
-    // innerDoc.querySelector("#botonFiltro").addEventListener("click", function() {
-    //     console.log("RECONOCI BOTON");
-    //     actualizarFiltros();
-    //     var url = getMultUrl();
-    //     fetch(url, options).then(function(response) {
-    //         return response.text();
-    //     }).then(function(html) {
-    //         //document.getElementById("data").innerHTML = html;
-    //         $('#data').html(html);
-    //     });
-    // });
+    console.log("reconoci contenido cargo");
+    innerDoc.querySelector("#botonFiltro").addEventListener("click", function() {
+        console.log("RECONOCI BOTON");
+        actualizarFiltros();
+        var url = getMultUrl();
+        fetch(url, options).then(function(response) {
+            return response.text();
+        }).then(function(html) {
+            //document.getElementById("data").innerHTML = html;
+            $('#data').html(html);
+        });
+    });
 });
 
-// function actualizarFiltros() {
-//     if (innerDoc.getElementById("cbfecha").checked) {
-//         var fechaDesde = innerDoc.getElementById("fechaDesde").value;
-//         var fechaHasta = innerDoc.getElementById("fechaHasta").value;
-//         filtros["fechaDeDeclaracion"].active = true;
-//         filtros["fechaDeDeclaracion"].desde = fechaDesde;
-//         filtros["fechaDeDeclaracion"].hasta = fechaHasta;
-//     }
-//     if (innerDoc.getElementById("cbempresa").checked) {
-//         actualizar("empresa");
-//     }
-//     if (innerDoc.getElementById("cbcantidad").checked) {
-//         actualizar("cantidad");
-//         actualizarSigno("cantidad");
-//     }
-//     if (innerDoc.getElementById("cbcifus").checked) {
-//         actualizar("cifus");
-//         actualizarSigno("cifus");
-//     }
-//     if (innerDoc.getElementById("cbdepartamento").checked) {
-//         actualizarSeleccion("departamento");
-//     }
-//     if (innerDoc.getElementById("cbnumeroDUA").checked) {
-//         actualizar("numeroDUA");
-//     }
+function actualizarFiltros() {
+    if (innerDoc.getElementById("cbfecha").checked) {
+        var fechaDesde = innerDoc.getElementById("fechaDesde").value;
+        var fechaHasta = innerDoc.getElementById("fechaHasta").value;
+        filtros["fechaDeDeclaracion"].active = true;
+        filtros["fechaDeDeclaracion"].desde = fechaDesde;
+        filtros["fechaDeDeclaracion"].hasta = fechaHasta;
+    }
+    if (innerDoc.getElementById("cbempresa").checked) {
+        actualizar("empresa");
+    }
+    if (innerDoc.getElementById("cbcantidad").checked) {
+        actualizar("cantidad");
+        actualizarSigno("cantidad");
+    }
+    if (innerDoc.getElementById("cbcifus").checked) {
+        actualizar("cifus");
+        actualizarSigno("cifus");
+    }
+    if (innerDoc.getElementById("cbdepartamento").checked) {
+        actualizarSeleccion("departamento");
+    }
+    if (innerDoc.getElementById("cbnumeroDUA").checked) {
+        actualizar("numeroDUA");
+    }
 
-// }
+}
 
 function getMultUrl() {
     var url = "/mult";
@@ -247,23 +247,23 @@ function getMultUrl() {
     return url;
 }
 
-// function actualizar(columna) {
-//     filtros[columna].active = true;
-//     filtros[columna].value = innerDoc.getElementById(columna).value;
-// }
+function actualizar(columna) {
+    filtros[columna].active = true;
+    filtros[columna].value = innerDoc.getElementById(columna).value;
+}
 
-// function actualizarSigno(columna) {
-//     var e = innerDoc.getElementById("slct" + columna);
-//     var seleccionado = e.options[e.selectedIndex].text;
-//     filtros[columna].signo = seleccionado;
-// }
+function actualizarSigno(columna) {
+    var e = innerDoc.getElementById("slct" + columna);
+    var seleccionado = e.options[e.selectedIndex].text;
+    filtros[columna].signo = seleccionado;
+}
 
-// function actualizarSeleccion(columna) {
-//     filtros[columna].active = true;
-//     var e = innerDoc.getElementById("slct" + columna);
-//     var seleccionado = e.options[e.selectedIndex].text;
-//     filtros[columna].value = seleccionado;
-// }
+function actualizarSeleccion(columna) {
+    filtros[columna].active = true;
+    var e = innerDoc.getElementById("slct" + columna);
+    var seleccionado = e.options[e.selectedIndex].text;
+    filtros[columna].value = seleccionado;
+}
 
 function mostrarBasesUy() {
     document.getElementById('obj1').style.display = 'block';
