@@ -11602,8 +11602,17 @@ input#numeroDUA {
     width: 130px !important;
 }
 
+#botonFiltro{
+    background: #159eee  !important;
+    border-radius: 0px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    color: #fff;
+    border: none;
+    margin-top: 10px;
+}
 
-/*#botonFiltro:hover {
-    background: #e2e2e2;
+#botonFiltro:hover {
     box-shadow: inset 0 0 0 3px #7fc1ec;
-}*/
+}
