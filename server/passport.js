@@ -2,7 +2,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var mysql= require('mysql');
 var bcrypt = require('bcryptjs');
 
-function verificar(passport){
+module.exports = function(passport){
 
 	passport.serializeUser(function(user, done){
 		done(null, user);
@@ -45,7 +45,3 @@ function verificar(passport){
 	));
 
 };
-
-module.exports = {
-	verificar: verificar
-}
