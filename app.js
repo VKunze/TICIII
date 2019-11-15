@@ -24,6 +24,7 @@ const server = http.createServer(function(request, response) {
     var filename = path.join(process.cwd(), uri);
 
     var tipo = request.url.slice(1, 5);
+    //console.log(request.url);
     if (request.method === 'GET' && tipo === 'pais') {
         var pais = request.url.slice(6, request.url.length);
         consulta.filtrar(db, { "paisDeOrigen": pais }).then((tabla) => {
@@ -50,6 +51,7 @@ const server = http.createServer(function(request, response) {
         }
         fs.exists(filename, function(exists) {
             handleNonExist(response, exists);
+            console.log(filename);
 
             if (fs.statSync(filename).isDirectory())
                 filename += '/index.html';

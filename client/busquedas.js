@@ -5,19 +5,19 @@ var options = {
     }
 };
 var iframe = document.getElementById("filtrosIFrame");
-var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+//var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+var innerDoc = iframe.contentDocument ? iframe.contentDocument : iframe.contentWindow.document;
+//if (innerDoc === iframe.contentDocument) console.log("opcion 1");
 var filtros = "";
-
-var htmlAImprimir = '';
 
 document.addEventListener("DOMContentLoaded", function(event) {
     inicializarFiltros();
     document.querySelector("#uruguay").addEventListener("click", async function() {
-        console.log("in query selector");
         fetch("/pais:uruguay", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            document.getElementById("data").innerHTML = html;
+            ////document.getElementById("data").innerHTML = html;
+            $('#data').html(html);
         });
         mostrarBasesUy();
     })
@@ -25,7 +25,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch("/pais:brasil", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            document.getElementById("data").innerHTML = html;
+            //document.getElementById("data").innerHTML = html;
+            $('#data').html(html);
+
         });
         mostrarBasesUy();
     })
@@ -33,7 +35,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch("/pais:argentina", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            document.getElementById("data").innerHTML = html;
+            //document.getElementById("data").innerHTML = html;
+            $('#data').html(html);
         });
         mostrarBasesUy();
     })
@@ -41,7 +44,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch("/pais:paraguay", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            document.getElementById("data").innerHTML = html;
+            //document.getElementById("data").innerHTML = html;
+            $('#data').html(html);
         });
         mostrarBasesUy();
     })
@@ -49,7 +53,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch("/pais:bolivia", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            document.getElementById("data").innerHTML = html;
+            //document.getElementById("data").innerHTML = html;
+            $('#data').html(html);
         });
         mostrarBasesUy();
     })
@@ -57,7 +62,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch("/pais:estadosunidos", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            document.getElementById("data").innerHTML = html;
+            //document.getElementById("data").innerHTML = html;
+            $('#data').html(html);
         });
         mostrarBasesUy();
     })
@@ -71,7 +77,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch(url, options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            document.getElementById("data").innerHTML = html;
+            //     //document.getElementById("data").innerHTML = html;
+            $('#data').html(html);
         });
         mostrarTablaImpTyA();
     })
@@ -84,7 +91,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch(url, options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            document.getElementById("data").innerHTML = html;
+            //document.getElementById("data").innerHTML = html;
+            $('#data').html(html);
         });
         mostrarTablaImpTyA();
     })
@@ -96,7 +104,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch(url, options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            document.getElementById("data").innerHTML = html;
+            //document.getElementById("data").innerHTML = html;
+            $('#data').html(html);
         });
         mostrarTablaImpTyA();
     })
@@ -108,65 +117,69 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch(url, options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            document.getElementById("data").innerHTML = html;
+            //document.getElementById("data").innerHTML = html;
+            $('#data').html(html);
         });
         mostrarTablaImpTyA();
     })
-    console.log(innerDoc);
-
 });
 
-// console.log("pre cargar tabla");
-// innerDoc2.addEventListener("DOMContentLoaded", function() {
-//     console.log("cargo tabla");
+// function waitForElement(id, callback) {
+//     var poops = setInterval(function() {
+//         if (innerDoc.getElementById(id)) {
+//             clearInterval(poops);
+//             callback();
+//         }
+//     }, 100);
+// }
 
-//     innerDoc2.getElementById('data').appendChild(htmlAImprimir);
+// waitForElement("j", function() {
+//     alert("element is loaded.. do stuff");
 // });
-
-
+console.log(innerDoc);
 innerDoc.addEventListener("DOMContentLoaded", function(event) {
-    innerDoc.querySelector("#botonFiltro").addEventListener("click", function() {
-        Console.LOG("RECONOCI BOTON");
-        actualizarFiltros();
-        var url = getMultUrl();
-        fetch(url, options).then(function(response) {
-            return response.text();
-        }).then(function(html) {
-            document.getElementById("data").innerHTML = html;
-        });
-    });
+    console.log("Estoy vivoo!!");
+    // console.log("reconoci contenido cargo");
+    // innerDoc.querySelector("#botonFiltro").addEventListener("click", function() {
+    //     console.log("RECONOCI BOTON");
+    //     actualizarFiltros();
+    //     var url = getMultUrl();
+    //     fetch(url, options).then(function(response) {
+    //         return response.text();
+    //     }).then(function(html) {
+    //         //document.getElementById("data").innerHTML = html;
+    //         $('#data').html(html);
+    //     });
+    // });
 });
 
-function actualizarFiltros() {
-    if (innerDoc.getElementById("cbfecha").checked) {
-        var fechaDesde = innerDoc.getElementById("fechaDesde").value;
-        var fechaHasta = innerDoc.getElementById("fechaHasta").value;
-        filtros["fechaDeDeclaracion"].active = true;
-        filtros["fechaDeDeclaracion"].desde = fechaDesde;
-        filtros["fechaDeDeclaracion"].hasta = fechaHasta;
-    }
-    if (innerDoc.getElementById("cbempresa").checked) {
-        actualizar("empresa");
-    }
-    if (innerDoc.getElementById("cbcantidad").checked) {
-        actualizar("cantidad");
-        actualizarSigno("cantidad");
-    }
-    if (innerDoc.getElementById("cbcifus").checked) {
-        actualizar("cifus");
-        actualizarSigno("cifus");
-    }
-    if (innerDoc.getElementById("cbdepartamento").checked) {
-        actualizarSeleccion("departamento");
-    }
-    /* if (innerDoc.getElementById("cbpaisDeOrigen").checked) {
-        actualizar("paisDeOrigen");
-    } */
-    if (innerDoc.getElementById("cbnumeroDUA").checked) {
-        actualizar("numeroDUA");
-    }
+// function actualizarFiltros() {
+//     if (innerDoc.getElementById("cbfecha").checked) {
+//         var fechaDesde = innerDoc.getElementById("fechaDesde").value;
+//         var fechaHasta = innerDoc.getElementById("fechaHasta").value;
+//         filtros["fechaDeDeclaracion"].active = true;
+//         filtros["fechaDeDeclaracion"].desde = fechaDesde;
+//         filtros["fechaDeDeclaracion"].hasta = fechaHasta;
+//     }
+//     if (innerDoc.getElementById("cbempresa").checked) {
+//         actualizar("empresa");
+//     }
+//     if (innerDoc.getElementById("cbcantidad").checked) {
+//         actualizar("cantidad");
+//         actualizarSigno("cantidad");
+//     }
+//     if (innerDoc.getElementById("cbcifus").checked) {
+//         actualizar("cifus");
+//         actualizarSigno("cifus");
+//     }
+//     if (innerDoc.getElementById("cbdepartamento").checked) {
+//         actualizarSeleccion("departamento");
+//     }
+//     if (innerDoc.getElementById("cbnumeroDUA").checked) {
+//         actualizar("numeroDUA");
+//     }
 
-}
+// }
 
 function getMultUrl() {
     var url = "/mult";
@@ -196,23 +209,23 @@ function getMultUrl() {
     return url;
 }
 
-function actualizar(columna) {
-    filtros[columna].active = true;
-    filtros[columna].value = innerDoc.getElementById(columna).value;
-}
+// function actualizar(columna) {
+//     filtros[columna].active = true;
+//     filtros[columna].value = innerDoc.getElementById(columna).value;
+// }
 
-function actualizarSigno(columna) {
-    var e = innerDoc.getElementById("slct" + columna);
-    var seleccionado = e.options[e.selectedIndex].text;
-    filtros[columna].signo = seleccionado;
-}
+// function actualizarSigno(columna) {
+//     var e = innerDoc.getElementById("slct" + columna);
+//     var seleccionado = e.options[e.selectedIndex].text;
+//     filtros[columna].signo = seleccionado;
+// }
 
-function actualizarSeleccion(columna) {
-    filtros[columna].active = true;
-    var e = innerDoc.getElementById("slct" + columna);
-    var seleccionado = e.options[e.selectedIndex].text;
-    filtros[columna].value = seleccionado;
-}
+// function actualizarSeleccion(columna) {
+//     filtros[columna].active = true;
+//     var e = innerDoc.getElementById("slct" + columna);
+//     var seleccionado = e.options[e.selectedIndex].text;
+//     filtros[columna].value = seleccionado;
+// }
 
 function mostrarBasesUy() {
     document.getElementById('obj1').style.display = 'block';
