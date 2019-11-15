@@ -1,4 +1,4 @@
-global.ingresado = false;
+var ingresado = false;
 
 document.addEventListener("DOMContentLoaded", function(event) {
     document.querySelector("#registrarse").addEventListener("click", async function() {
@@ -28,30 +28,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
             password: document.getElementById('Contraseña').value
         };
 
-        fetch('ingresar', {
-                method: 'POST',
-                body: JSON.stringify(data).then(response => {
-                    if (!response.ok) throw Error(response.status);
-                    return response;
-                }),
-                headers: {
-                    'Content-type': 'application-json'
-                }
-            }).then(response => {
-                alert("ok");
-                ingresado = true;
-            })
-            .catch(error => alert(error));
-
-    })
-
-    document.querySelector("#busquedasLink").addEventListener("click", async function() {
-        console.log('ingresado');
-        mostrarIngresar();
     })
 
 });
-
-function mostrarIngresar() {
-    document.getElementById('IniciarSesion').style.display = 'block';
-}

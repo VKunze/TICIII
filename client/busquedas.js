@@ -251,6 +251,10 @@ function mostrarTablaImpTyA() {
     document.getElementById('TablaImpTyA').style.display = 'block';
 }
 
+function mostrarIngresar() {
+    document.getElementById('IniciarSesion').style.display = 'block';
+}
+
 function inicializarFiltros() {
     filtros = {
         fechaDeDeclaracion: {
@@ -306,4 +310,8 @@ function inicializarFiltros() {
             value: null
         }
     };
+}
+
+module.exports = {
+    mostrarIngresar: mostrarIngresar
 }
