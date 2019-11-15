@@ -4,10 +4,7 @@ var options = {
         'Content-Type': 'text/html'
     }
 };
-var iframe = document.getElementById("filtrosIFrame");
-//var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-var innerDoc = iframe.contentDocument ? iframe.contentDocument : iframe.contentWindow.document;
-//if (innerDoc === iframe.contentDocument) console.log("opcion 1");
+
 var filtros = "";
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -159,26 +156,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         });
         mostrarTablaImpTyA();
     })
-
-});
-
-function waitForElement(id, callback) {
-    var poops = setInterval(function() {
-        if (innerDoc.getElementById(id)) {
-            clearInterval(poops);
-            callback();
-        }
-    }, 100);
-}
-
-waitForElement("j", function() {
-    alert("element is loaded.. do stuff");
-});
-console.log(innerDoc);
-innerDoc.addEventListener("DOMContentLoaded", function(event) {
-    console.log("Estoy vivoo!!");
-    console.log("reconoci contenido cargo");
-    innerDoc.querySelector("#botonFiltro").addEventListener("click", function() {
+    document.querySelector("#botonFiltro").addEventListener("click", function() {
         console.log("RECONOCI BOTON");
         actualizarFiltros();
         var url = getMultUrl();
@@ -192,28 +170,28 @@ innerDoc.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function actualizarFiltros() {
-    if (innerDoc.getElementById("cbfecha").checked) {
-        var fechaDesde = innerDoc.getElementById("fechaDesde").value;
-        var fechaHasta = innerDoc.getElementById("fechaHasta").value;
+    if (document.getElementById("cbfecha").checked) {
+        var fechaDesde = document.getElementById("fechaDesde").value;
+        var fechaHasta = document.getElementById("fechaHasta").value;
         filtros["fechaDeDeclaracion"].active = true;
         filtros["fechaDeDeclaracion"].desde = fechaDesde;
         filtros["fechaDeDeclaracion"].hasta = fechaHasta;
     }
-    if (innerDoc.getElementById("cbempresa").checked) {
+    if (document.getElementById("cbempresa").checked) {
         actualizar("empresa");
     }
-    if (innerDoc.getElementById("cbcantidad").checked) {
+    if (document.getElementById("cbcantidad").checked) {
         actualizar("cantidad");
         actualizarSigno("cantidad");
     }
-    if (innerDoc.getElementById("cbcifus").checked) {
+    if (document.getElementById("cbcifus").checked) {
         actualizar("cifus");
         actualizarSigno("cifus");
     }
-    if (innerDoc.getElementById("cbdepartamento").checked) {
+    if (document.getElementById("cbdepartamento").checked) {
         actualizarSeleccion("departamento");
     }
-    if (innerDoc.getElementById("cbnumeroDUA").checked) {
+    if (document.getElementById("cbnumeroDUA").checked) {
         actualizar("numeroDUA");
     }
 
@@ -249,18 +227,18 @@ function getMultUrl() {
 
 function actualizar(columna) {
     filtros[columna].active = true;
-    filtros[columna].value = innerDoc.getElementById(columna).value;
+    filtros[columna].value = document.getElementById(columna).value;
 }
 
 function actualizarSigno(columna) {
-    var e = innerDoc.getElementById("slct" + columna);
+    var e = document.getElementById("slct" + columna);
     var seleccionado = e.options[e.selectedIndex].text;
     filtros[columna].signo = seleccionado;
 }
 
 function actualizarSeleccion(columna) {
     filtros[columna].active = true;
-    var e = innerDoc.getElementById("slct" + columna);
+    var e = document.getElementById("slct" + columna);
     var seleccionado = e.options[e.selectedIndex].text;
     filtros[columna].value = seleccionado;
 }

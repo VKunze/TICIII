@@ -95,6 +95,7 @@ var filtrar = function(db, filtrosAActualizar) {
                 }
 
             }
+            console.log(tableBody);
             resolve(tableBody);
         });
     });
@@ -124,9 +125,7 @@ function getQuery(){
                     query += columna + ' = \'';
                 }
                 query += filtros[columna].value + '\'';
-
             }
-
         }
     }
     return query;
