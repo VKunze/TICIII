@@ -7,14 +7,12 @@ var mysql = require('mysql');
     database : "ticdb"
 }); */
 
-
 var db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "30234155",
-    database: "ticdb"
+    password: "victoria15",
+    database: "usuarios"
 });
-
 
 db.connect(function(err) {
     if (err) throw err;
