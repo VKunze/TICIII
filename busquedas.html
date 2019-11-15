@@ -195,7 +195,117 @@
                 <h3 style="margin-left:30px; margin-top: 70px;">Seleccione los filtros que desea</h3>
             </div>
             <div class="col-md-6 col-xs-12" style="width: 30%; margin-top: 40px; height: 690px;" !important;>
-                <iframe width="500" height="900" src="filtros.html" scrolling="no" frameborder="no" id="filtrosIFrame"></iframe>
+                <!-- <iframe width="500" height="900" src="filtros.html" scrolling="no" frameborder="no" id="filtrosIFrame"></iframe> -->
+
+                <div style="padding-left: 20px;" important!>
+                        <!-- <h1 id="title">Filtros</h1> -->
+                        <!-- <h3 id="description">SELECCIONA LOS FILTROS QUE DESEAS</h3><br> -->
+                        <form id="survey-form">
+                    
+                            <div style="margin-bottom: 10px; display: flex;">
+                                <span class="box_left">Fecha</span>
+                                <input type="checkbox" id="cbfecha">
+                                <input type="date" name="Fecha" id="fechaDesde">
+                                <input type="date" name="Fecha" id="fechaHasta">
+                            </div>
+                    
+                            <div style="margin-bottom: 10px; display: flex;">
+                                <span class="box_left">Empresa</span>
+                                <input type="checkbox" id="cbempresa">
+                                <span class="box_right"><input id="empresa"></input></span>
+                            </div>
+                    
+                            <div style="margin-bottom: 10px; display: flex;">
+                                <span class="box_left">Cantidad</span>
+                                <input type="checkbox" id="cbcantidad">
+                                <span class="select">
+                                    <select name="slct" id="slctcantidad">
+                                        <option selected disabled>Seleccionar</option>
+                                        <option value="1">></option>
+                                        <option value="2"><</option>
+                                        <option value="3">=</option>
+                                    </select>
+                                </span>
+                                <span class="box_right"><input id="cantidad" style="margin-left: 5px"></input></span>
+                            </div>
+                    
+                            <div style="margin-bottom: 10px; display: flex;">
+                                <span class="box_left">Cifra en dólares</span>
+                                <input type="checkbox" id="cbcifus">
+                                <span class="select">
+                            <select name="slct" id="slctcifus">
+                              <option selected disabled>Seleccionar</option>
+                              <option value="1">></option>
+                              <option value="2"><</option>
+                              <option value="3">=</option>
+                            </select>
+                        </span>
+                                <span class="box_right"><input id="cifus" style="margin-left: 5px"></input></span>
+                            </div>
+                    
+                            <div style="margin-bottom: 10px; display: flex;">
+                                <span class="box_left">Departamento</span>
+                                <input type="checkbox" id="cbdepartamento">
+                                <span class="select">
+                            <select name="slct" id="slctdepartamento">
+                              <option selected disabled>Seleccionar</option>
+                              <option value="Artigas">Artigas</option>
+                              <option value="Canelones">Canelones</option>
+                              <option value="Cerro Largo">Cerro Largo</option>
+                              <option value="Colonia">Colonia</option>
+                              <option value="Durazno">Durazno</option>
+                              <option value="Flores">Flores</option>
+                              <option value="Florida">Florida</option>
+                              <option value="Lavalleja">Lavalleja</option>
+                              <option value="Maldonado">Maldonado</option>
+                              <option value="Montevideo">Montevideo</option>
+                              <option value="Paysandú">Paysandú</option>
+                              <option value="Río Negro">Río Negro</option>
+                              <option value="Rivera">Rivera</option>
+                              <option value="Rocha">Rocha</option>
+                              <option value="Salto">Salto</option>
+                              <option value="San José">San José</option>
+                              <option value="Soriano">Soriano</option>
+                              <option value="Tacuarembó">Tacuarembó</option>
+                              <option value="Treinta y Tres">Treinta y Tres</option>
+                              
+                            </select>
+                    </div>
+                    
+                    <!-- <div style="margin-bottom: 10px; display: flex;">
+                        <span class="box_left">País de origen</span>
+                                <input type="checkbox" id="cbpaisDeOrigen">
+                                <span class="box_right"><input id="paisDeOrigen"></input></span>
+                            </div> -->
+                    
+                            <!-- <div style="margin-bottom: 10px;display: flex;">
+                                <span class="box_left">Vía de transporte</span>
+                                <input type="checkbox" id="cbviaDeTransporte">
+                                <span class="select" style="width:161,6px ;">
+                          <select name="slct" id="slctviaDeTransporte">
+                            <option selected disabled>Seleccionar</option>
+                            <option value="1">VÍA AERÉA</option>
+                            <option value="2">VÍA MARÍTIMA</option>
+                            <option value="3">VÍA TERRESTRE</option>
+                          </select>
+                        </span>
+                            </div> -->
+                    
+                            <div style="margin-bottom: 10px; display: flex;">
+                                <span class="box_left">Número de DUA</span>
+                                <input type="checkbox" id="cbnumeroDUA">
+                                <span class="box_right"><input id="numeroDUA"></input></span>
+                            </div>
+                    
+                    
+                            <button type="button" id="botonFiltro" class="btn btn-default submit-button">Filtrar <i class="fa fa-caret-right"></i></button>
+                    
+                        </form>
+                    
+                        <script src="./client/calendarfiltro.js"></script>
+                    </div>
+
+
             </div>
             <div class="col-md-6 col-xs-12" style="padding-left: 32px; padding-right: 0px; height: 690px; width: 70%;" important!>
                 <link rel="stylesheet" type="text/css" href="Table_Responsive_v2/css/mainTabla.css">
