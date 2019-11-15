@@ -8,8 +8,9 @@ var iframe = document.getElementById("filtrosIFrame");
 var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 var filtros = "";
 
-var iframe2 = document.getElementById("tablaIFrame");
-var innerDoc2 = iframe.contentDocument || iframe.contentWindow.document;
+// var iframe2 = document.getElementById("tablaIFrame");
+// var innerDoc2 = iframe.contentDocument || iframe.contentWindow.document;
+
 
 var htmlAImprimir = '';
 
@@ -20,7 +21,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch("/pais:uruguay", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            htmlAImprimir = html;
+            //htmlAImprimir = html;
+            document.getElementById("data").innerHTML = html;
             /* innerDoc2.getElementById('data').html(html); */
             //console.log(innerDoc2);
             // console.log($("#tablaIFrame").contents().find("#data"));
@@ -84,10 +86,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
             // $("#tablaIFrame").contents().find("#data").html(html);
         });
         mostrarTablaImpTyA();
-        innerDoc2.addEventListener("DOMContentLoaded", function() {
-            console.log(innerDoc2);
-            innerDoc2.getElementById('data').appendChild(htmlAImprimir);
-        });
     })
     document.querySelector("#ExpTyA").addEventListener("click", function() {
         filtros["viaDeTransporte"].active = true;
@@ -126,8 +124,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
         });
         mostrarTablaImpTyA();
     })
+    console.log(innerDoc);
 
 });
+
+// console.log("pre cargar tabla");
+// innerDoc2.addEventListener("DOMContentLoaded", function() {
+//     console.log("cargo tabla");
+
+//     innerDoc2.getElementById('data').appendChild(htmlAImprimir);
+// });
 
 
 innerDoc.addEventListener("DOMContentLoaded", function(event) {
