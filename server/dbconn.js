@@ -14,21 +14,21 @@ var mysql = require('mysql');
     database: "usuarios"
 }); */
 
-/* var db = mysql.createConnection({
+var db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "30234155",
     database: "ticdb"
-}); */
+});
 
-db.connect(function(err){
+db.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
 })
 
-function query1(sql){
-    if(!sql) sql = "";
-    return db.query(sql, function(err, result){
+function query1(sql) {
+    if (!sql) sql = "";
+    return db.query(sql, function(err, result) {
         if (err) throw err;
     })
 }
@@ -37,4 +37,3 @@ module.exports = {
     db: db,
     query1: query1
 };
-
