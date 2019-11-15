@@ -8,14 +8,11 @@ var iframe = document.getElementById("filtrosIFrame");
 var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 var filtros = "";
 
-<<<<<<< HEAD
-// var iframe2 = document.getElementById("tablaIFrame");
-// var innerDoc2 = iframe.contentDocument || iframe.contentWindow.document;
 
-=======
+
 var iframe2 = document.getElementById("tablaIFrame");
 var innerDoc2 = iframe.contentDocument || iframe.contentWindow.document;
->>>>>>> parent of 73453b9... Merge branch 'master' of https://github.com/VKunze/TICIII
+
 
 var htmlAImprimir = '';
 
@@ -26,12 +23,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         fetch("/pais:uruguay", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-<<<<<<< HEAD
+
             //htmlAImprimir = html;
             document.getElementById("data").innerHTML = html;
-=======
+
             htmlAImprimir = html;
->>>>>>> parent of 73453b9... Merge branch 'master' of https://github.com/VKunze/TICIII
+
             /* innerDoc2.getElementById('data').html(html); */
             //console.log(innerDoc2);
             // console.log($("#tablaIFrame").contents().find("#data"));
