@@ -21,14 +21,14 @@ var mysql = require('mysql');
     database: "ticdb"
 }); */
 
-db.connect(function(err) {
+db.connect(function(err){
     if (err) throw err;
     console.log("Connected!");
 })
 
-function query1(sql) {
-    if (!sql) sql = "";
-    return db.query(sql, function(err, result) {
+function query1(sql){
+    if(!sql) sql = "";
+    return db.query(sql, function(err, result){
         if (err) throw err;
     })
 }
@@ -37,3 +37,4 @@ module.exports = {
     db: db,
     query1: query1
 };
+

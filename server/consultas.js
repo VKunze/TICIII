@@ -3,59 +3,59 @@ var fs = require('fs');
 var Promise = require('promise');
 
 var filtros = {
-    id: {
+    id : {
         active: false,
         value: null
     },
-    fechaDeDeclaracion: {
+    fechaDeDeclaracion : {
         active: false,
         desde: null,
         hasta: null
     },
-    empresa: {
+    empresa : {
         active: false,
         value: null
     },
-    cantidad: {
-        active: false,
-        signo: null,
-        value: null
-    },
-    cifus: {
+    cantidad : {
         active: false,
         signo: null,
         value: null
     },
-    departamento: {
+    cifus : {
+        active: false,
+        signo: null,
+        value: null
+    },
+    departamento : {
         active: false,
         value: null
     },
-    paisDeOrigen: {
+    paisDeOrigen : {
         active: false,
         value: null
     },
-    pesoNeto: {
+    pesoNeto : {
         active: false,
         value: null
     },
-    descripcion: {
+    descripcion : {
         active: false,
         value: null
     },
-    viaDeTransporte: {
+    viaDeTransporte : {
         active: false,
         value: null,
         value2: null
     },
-    seguro: {
+    seguro : {
         active: false,
         value: null
     },
-    numeroDUA: {
+    numeroDUA : {
         active: false,
         value: null
     },
-    iva: {
+    iva : {
         active: false,
         value: null
     }
@@ -100,7 +100,7 @@ var filtrar = function(db, filtrosAActualizar) {
     });
 }
 
-function getQuery() {
+function getQuery(){
     var query = 'SELECT * FROM import_uruguay';
     var firstFilter = true;
     for (columna in filtros) {
@@ -158,5 +158,5 @@ function actualizarFiltros(filtrosAActualizar) {
 }
 
 module.exports = {
-    filtrar: filtrar
+    filtrar : filtrar
 };
