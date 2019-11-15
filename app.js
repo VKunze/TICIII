@@ -34,7 +34,7 @@ const server = http.createServer(function(request, response) {
         });
     } else if (request.method === 'GET' && tipo === "mult") {
         var filtros = JSON.parse(JSON.stringify(requrl.query));
-        console.log("en filtros");
+        //console.log("en filtros");
         consulta.filtrar(db, filtros).then((tabla) => {
             response.writeHead(200, { "Content-Type": "text/html" });
             response.write(tabla);
@@ -51,8 +51,7 @@ const server = http.createServer(function(request, response) {
         }
         fs.exists(filename, function(exists) {
             handleNonExist(response, exists);
-            console.log(filename);
-
+            
             if (fs.statSync(filename).isDirectory())
                 filename += '/index.html';
 
