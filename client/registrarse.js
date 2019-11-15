@@ -1,4 +1,4 @@
-var ingresado = false;
+global.ingresado = false;
 
 document.addEventListener("DOMContentLoaded", function(event) {
     document.querySelector("#registrarse").addEventListener("click", async function() {
@@ -30,12 +30,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         fetch('ingresar', {
             method: 'POST',
-            body: JSON.stringify(data),
+            body: JSON.stringify(data).then(response => {
+                if (!response.ok) throw Error(response.status);
+                else{ingresado=true};
+                return response;}),
             headers: {
                 'Content-type': 'application-json'
-            }
-        }, function() {
-
-        });
+            } 
+        }).then(response => alert("ok")) 
+        .catch(error => alert(error)); 
+        
     })
+
 });
