@@ -8,13 +8,18 @@ var iframe = document.getElementById("filtrosIFrame");
 var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 var filtros = "";
 
+var iframe2 = document.getElementById("tablaIFrame");
+var innerDoc2 = iframe.contentDocument || iframe.contentWindow.document;
+
 document.addEventListener("DOMContentLoaded", function(event) {
     inicializarFiltros();
     document.querySelector("#uruguay").addEventListener("click", async function() {
         fetch("/pais:uruguay", options).then(function(response) {
             return response.text();
         }).then(function(html) {
-            $('#data').html(html);
+            /* innerDoc2.getElementById('data').html(html); */
+            console.log(html);
+            $("#tablaIFrame").contents().find("#data").html(html);
         });
         mostrarBasesUy();
     })
@@ -64,23 +69,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         filtros["viaDeTransporte"].value = "VÍA AERÉA";
         filtros["viaDeTransporte"].value2 = "VÍA TERRESTRE";
 
-        var url = getMultUrl(); <<
-        << << < HEAD
+        var url = getMultUrl();
         /* fetch(url, options).then(function(response){
             return response.text();
         }).then(function(html){
             $('#data').html(html);
         }); */
-            ===
-            === =
-            fetch(url, options).then(function(response) {
-                return response.text();
-            }).then(function(html) {
-                $('#data').html(html);
-            }); >>>
-        >>> > parent of 2 a15cd5...Merge branch 'master'
-        of https: //github.com/VKunze/TICIII
-            mostrarTablaImpTyA();
+        mostrarTablaImpTyA();
     })
     document.querySelector("#ExpTyA").addEventListener("click", function() {
         filtros["viaDeTransporte"].active = true;
