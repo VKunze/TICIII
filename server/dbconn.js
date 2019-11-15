@@ -1,20 +1,19 @@
 var mysql = require('mysql');
 
+/* var db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "1997",
+    database : "ticdb"
+}); */
+
 
 var db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "1997",
-    database: "ticdb"
-});
-
-
-/* var db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
     password: "30234155",
     database: "ticdb"
-}); */
+});
 
 
 db.connect(function(err) {
