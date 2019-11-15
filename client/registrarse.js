@@ -43,3 +43,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
 
 });
+
+function mostrarIngresar() {
+    document.getElementById('obj1').style.display = 'block';
+}
