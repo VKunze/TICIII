@@ -132,6 +132,7 @@ function getQuery(){
 };
 
 function actualizarFiltros(filtrosAActualizar) {
+    console.log(filtrosAActualizar);
     for (columna in filtros) {
         if (columna in filtrosAActualizar) {
             if (filtros[columna].active === false) {
@@ -152,6 +153,8 @@ function actualizarFiltros(filtrosAActualizar) {
             }
         } else if (columna != "paisDeOrigen" && filtros[columna].active) {
             filtros[columna].active = false;
+        } else if (filtros[columna].active == true){
+            filtros[columna].active === false;
         }
     }
 }
