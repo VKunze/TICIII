@@ -3,123 +3,120 @@ var fs = require('fs');
 var Promise = require('promise');
 
 var filtros = {
-    id : {
+    id: {
         active: false,
         value: null
     },
-    fechaDeDeclaracion : {
-        active: false,
-        desde: null,
-        hasta: null
-    },
-    empresa : {
+    fechaDeDeclaracion: {
         active: false,
         value: null
     },
-    cantidad : {
+    empresa: {
         active: false,
         value: null
     },
-    cifus : {
+    cantidad: {
         active: false,
         value: null
     },
-    departamento : {
+    cifus: {
         active: false,
         value: null
     },
-    paisDeOrigen : {
+    departamento: {
         active: false,
         value: null
     },
-    pesoNeto : {
+    paisDeOrigen: {
         active: false,
         value: null
     },
-    descripcion : {
+    pesoNeto: {
         active: false,
         value: null
     },
-    viaDeTransporte : {
+    descripcion: {
         active: false,
         value: null
     },
-    seguro : {
+    viaDeTransporte: {
         active: false,
         value: null
     },
-    numeroDUA : {
+    seguro: {
         active: false,
         value: null
     },
-    iva : {
+    numeroDUA: {
+        active: false,
+        value: null
+    },
+    iva: {
         active: false,
         value: null
     }
 }
 
-var filtrar = function(db, filtrosAActualizar) {
-    return new Promise((resolve, reject)=>{
-        var tableBody="";
-        actualizarFiltros(filtrosAActualizar);        
+var filtrar = function(db) {
+    return new Promise((resolve, reject) => {
+        console.log("llegue a filtrar");
+        var tableBody = "";
+        //var queryString = 'SELECT * FROM import_uruguay';
+        actualizarFiltros("paisDeOrigen", "Uruguay");
+        console.log("Post actualizar filtros");
         var queryString = getQuery();
         console.log(queryString);
         db.query(queryString, function(err, results) {
             if (err) throw err;
             for (i = 0; i < results.length; i++) {
-                tableBody += '<div class="row">';
-                tableBody += '  <div class="cell" data-title="ID">' + results[i].id + '</div>';
-                tableBody += '  <div class="cell" data-title="FechaDeclaracion">' + results[i].fechaDeDeclaracion + '</div>';
-                tableBody += '  <div class="cell" data-title="Empresa">' + results[i].empresa + '</div>';
-                tableBody += '  <div class="cell" data-title="Cantidad">' + results[i].cantidad + '</div>';
-                tableBody += '  <div class="cell" data-title="CIF">' + results[i].cifus + '</div>';
-                tableBody += '  <div class="cell" data-title="Departamento">' + results[i].departamento + '</div>';
-                tableBody += '  <div class="cell" data-title="PaisOrigen">' + results[i].paisDeOrigen + '</div>';
-                tableBody += '  <div class="cell" data-title="PesoNeto">' + results[i].pesoNeto + '</div>';
-                tableBody += '  <div class="cell" data-title="Descripcion">' + results[i].descripcion + '</div>';
-                tableBody += '  <div class="cell" data-title="ViaDeTransporte">' + results[i].viaDeTransporte + '</div>';
-                tableBody += '  <div class="cell" data-title="Seguro">' + results[i].seguro + '</div>';
-                tableBody += '  <div class="cell" data-title="DUA">' + results[i].numeroDUA + '</div>';
-                tableBody += '  <div class="cell" data-title="IVA">' + results[i].iva + '</div>';
-                tableBody += '</div>';
+                '<div class="row">';
+                tableBody += '  <div class="cell">' + results[i].id + '</div>';
+                tableBody += '  <div class="cell">' + results[i].fechaDeDeclaracion + '</div>';
+                tableBody += '  <div class="cell">' + results[i].empresa + '</div>';
+                tableBody += '  <div class="cell">' + results[i].cantidad + '</div>';
+                tableBody += '  <div class="cell">' + results[i].cifus + '</div>';
+                tableBody += '  <div class="cell">' + results[i].departamento + '</div>';
+                tableBody += '  <div class="cell">' + results[i].paisDeOrigen + '</div>';
+                tableBody += '  <div class="cell">' + results[i].pesoNeto + '</div>';
+                tableBody += '  <div class="cell">' + results[i].descripcion + '</div>';
+                tableBody += '  <div class="cell">' + results[i].viaDeTransporte + '</div>';
+                tableBody += '  <div class="cell">' + results[i].seguro + '</div>';
+                tableBody += '  <div class="cell">' + results[i].numeroDUA + '</div>';
+                tableBody += '  <div class="cell">' + results[i].iva + '</div>';
+                '</div>';
             }
+            console.log(tableBody);
             resolve(tableBody);
         });
     });
 }
 
-function getQuery(){
+function getQuery() {
     var query = 'SELECT * FROM import_uruguay';
     var firstFilter = true;
-    for(elem in filtros){
-        if(filtros[elem].active){
-            if(firstFilter){
+    console.log("in get query");
+    for (elem in filtros) {
+        if (filtros[elem].active) {
+            if (firstFilter) {
                 query += ' WHERE ';
                 firstFilter = false;
-            } else {
-                query += ' and ';
             }
             query += elem + ' = \'' + filtros[elem].value + '\'';
+            console.log(query);
         }
-    }   
+    }
+    console.log("fin");
     return query;
 };
 
-function actualizarFiltros(filtrosAActualizar){
-    for (columna in filtrosAActualizar){
-            if(filtros[columna].active === false){
-                filtros[columna].active = true;
-            }
-            /* if(columna === "fechaDeDeclaracion"){
-                filtros[columna].desde = valor;
-                filtros[columna].hasta = valor2;
-            }else{ */
-                filtros[columna].value = filtrosAActualizar[columna];
-            //}
-        //}
+function actualizarFiltros(columna, valor) {
+    console.log(filtros[columna].active);
+    if (filtros[columna].active === false) {
+        filtros[columna].active = true;
     }
+    filtros[columna].value = valor;
 }
 
 module.exports = {
-    filtrar : filtrar
+    filtrar: filtrar
 };
