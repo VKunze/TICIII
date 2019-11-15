@@ -1,3 +1,5 @@
+var ingresado = false;
+
 document.addEventListener("DOMContentLoaded", function(event) {
     document.querySelector("#registrarse").addEventListener("click", async function() {
         var data = {
@@ -32,6 +34,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             headers: {
                 'Content-type': 'application-json'
             }
+        }, function() {
+
         });
     })
 });
