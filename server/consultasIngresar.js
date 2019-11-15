@@ -1,7 +1,7 @@
 var db = require('./dbconn.js').db;
 var querystring = require('querystring');
 /* var popup = require('popups'); */
-var alertJS=("js-alert");
+/* var alertJS=("js-alert"); */
 
 function guardar(request, response) {
     var info = '';
@@ -33,17 +33,11 @@ function verificar(request, response) {
                 console.log("in results[0]");
                 if (results[0].password != formulario['password']){
                     console.log("in contraseña incorrecta");
-                    alertJS.alert("La contraseña es incorrecta");
                 } else {
                     console.log("in ingresado correctamente");
-                    alertJS.alert("Ha ingresado correctamente");
                 }
             } else {
                 console.log("in no existe usuario");
-                alertJS.alert({
-                    content: "No existe un usuario con este nombre."
-                });
-                //alert("No existe un usuario con este nombre.");
             }
         });
     });
